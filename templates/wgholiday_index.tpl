@@ -33,7 +33,9 @@
                     <h3>(<{$event.id|default:false}>) <{$event.name|default:false}></h3>
                 </div>
                 <div class="col-xs-12 col-md-6 wgholiday-index-bottons">
-                    <a class='btn btn-primary' href="admin/event.php?op=edit&amp;id=<{$event.id|default:false}>&amp;start=<{$start|default:0}>&amp;limit=<{$limit|default:0}>" title="<{$smarty.const._EDIT}>"><i class='fa fa-edit'></i></a>
+                    <{if $perm_edit|default:false}>
+                        <a class='btn btn-primary' href="admin/event.php?op=edit&amp;id=<{$event.id|default:false}>&amp;start=<{$start|default:0}>&amp;limit=<{$limit|default:0}>" title="<{$smarty.const._EDIT}>"><i class='fa fa-edit'></i></a>
+                    <{/if}>
                 </div>
             </div>
             <{if $use_header|default:false}>
@@ -82,15 +84,20 @@
                         <{$smarty.const._MD_WGHOLIDAY_EVENT_DATE_SHOWTO}>: <{$event.date_showto_text|default:false}>&nbsp;&nbsp;
                         <img src="<{$wgholiday_icons_url|default:false}>/32/<{$event.date_fromto_img|default:false}>" alt="<{$event.date_fromto_status|default:false}>" title="<{$event.date_fromto_status|default:false}>">
                     <{else}>
-                        <form action='event.php' method='post' style='display:inline;'>
-                            <{$token_wgholiday}>
-                            <input type='hidden' name='op' value='change_status'>
-                            <input type='hidden' name='id' value='<{$event.id}>'>
-                            <input type='hidden' name='start' value='<{$start}>'>
-                            <input type='hidden' name='limit' value='<{$limit}>'>
-                            <label><{$event.status_text|default:false}></label>&nbsp;
-                            <input type='image'  src='<{$wgholiday_icons_url|default:false}>/32/<{$event.status|default:false}>.png' style='border:0;'>
-                        </form>
+                        <{if $perm_edit|default:false}>
+                            <form action='event.php' method='post' style='display:inline;'>
+                                <{$token_wgholiday}>
+                                <input type='hidden' name='op' value='change_status'>
+                                <input type='hidden' name='id' value='<{$event.id}>'>
+                                <input type='hidden' name='start' value='<{$start}>'>
+                                <input type='hidden' name='limit' value='<{$limit}>'>
+                                <label><{$event.status_text|default:false}></label>&nbsp;
+                                <input type='image'  src='<{$wgholiday_icons_url|default:false}>/32/<{$event.status|default:false}>.png' style='border:0;'>
+                            </form>
+                        <{else}>
+                            <img src="<{$wgholiday_icons_url|default:false}>/32/<{$event.status|default:false}>.png" alt="<{$event.status_text|default:false}>" title="<{$event.status_text|default:false}>">
+                        <{/if}>
+
                     <{/if}>
                 </div>
             </div>
