@@ -1,27 +1,760 @@
+<style>
+    :root {
+        --primary: #2d6cdf;
+        --primary-dark: #1f4fa8;
+        --secondary: #f4f7fb;
+        --border: #dfe5ee;
+        --text: #263238;
+        --muted: #687582;
+        --success: #2e8b57;
+        --warning: #c98200;
+        --white: #ffffff;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        background: var(--secondary);
+        color: var(--text);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Helvetica, Arial, sans-serif;
+        line-height: 1.65;
+    }
+
+    .hero {
+        background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+        color: var(--white);
+        border-radius: 14px;
+        padding: 45px 40px;
+        margin-bottom: 30px;
+        box-shadow: 0 8px 25px rgba(31, 79, 168, 0.18);
+    }
+
+    .hero h2 {
+        margin: 0 0 10px;
+        font-size: 38px;
+        line-height: 1.2;
+    }
+
+    .hero p {
+        margin: 8px 0;
+        font-size: 17px;
+        opacity: 0.94;
+    }
+
+    .badge {
+        display: inline-block;
+        margin-top: 15px;
+        padding: 5px 12px;
+        border-radius: 20px;
+        background: rgba(255,255,255,0.18);
+        font-size: 13px;
+        font-weight: 600;
+    }
+
+    .card {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 28px 30px;
+        margin-bottom: 22px;
+        box-shadow: 0 3px 12px rgba(30, 50, 80, 0.05);
+    }
+
+    h2 {
+        margin-top: 0;
+        color: var(--text-primary);
+        font-size: 25px;
+    }
+
+    h3 {
+        color: var(--primary);
+        margin-top: 26px;
+    }
+
+    h4 {
+        color: var(--primary);
+    }
+
+    p:last-child {
+        margin-bottom: 0;
+    }
+
+    a {
+        color: var(--primary);
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    .toc {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    .toc a {
+        display: block;
+        background: var(--secondary);
+        border: 1px solid var(--border);
+        padding: 11px 14px;
+        border-radius: 8px;
+        font-weight: 600;
+    }
+
+    .toc a:hover {
+        background: #eaf1ff;
+        text-decoration: none;
+    }
+
+    ul, ol {
+        padding-left: 24px;
+    }
+
+    li {
+        margin-bottom: 7px;
+    }
+
+    .info,
+    .success,
+    .warning {
+        padding: 15px 18px;
+        border-radius: 8px;
+        margin: 18px 0;
+    }
+
+    .info {
+        background: #eef5ff;
+        border-left: 4px solid var(--primary);
+    }
+
+    .success {
+        background: #eef9f2;
+        border-left: 4px solid var(--success);
+    }
+
+    .warning {
+        background: #fff7e8;
+        border-left: 4px solid var(--warning);
+    }
+
+    .steps {
+        counter-reset: steps;
+        list-style: none;
+        padding-left: 0;
+    }
+
+    .steps li {
+        counter-increment: steps;
+        position: relative;
+        padding: 14px 16px 14px 55px;
+        margin-bottom: 10px;
+        background: var(--secondary);
+        border-radius: 8px;
+    }
+
+    .steps li::before {
+        content: counter(steps);
+        position: absolute;
+        left: 15px;
+        top: 12px;
+        width: 28px;
+        height: 28px;
+        line-height: 28px;
+        text-align: center;
+        border-radius: 50%;
+        background: var(--primary);
+        color: var(--white);
+        font-weight: 700;
+    }
+
+    code {
+        padding: 2px 6px;
+        border-radius: 4px;
+        background: #eef1f5;
+        font-family: Consolas, Monaco, monospace;
+        font-size: 0.92em;
+    }
+
+    .table-wrapper {
+        overflow-x: auto;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 15px 0;
+    }
+
+    th,
+    td {
+        padding: 11px 13px;
+        border: 1px solid var(--border);
+        text-align: left;
+        vertical-align: top;
+    }
+
+    th {
+        background: var(--secondary);
+        font-weight: 700;
+    }
+
+    .footer {
+        text-align: center;
+        color: var(--muted);
+        font-size: 13px;
+        margin-top: 35px;
+    }
+
+    @media (max-width: 600px) {
+        .wrapper {
+            padding: 15px 12px 40px;
+        }
+
+        .hero {
+            padding: 30px 24px;
+        }
+
+        .hero h1 {
+            font-size: 30px;
+        }
+
+        .card {
+            padding: 22px 20px;
+        }
+    }
+</style>
+
 <div id="help-template" class="outer">
-    <h1 class="head">Help:
+    <h1 class="head">Hilfe:
         <a class="ui-corner-all tooltip" href="<{$xoops_url}>/modules/wgholiday/admin/index.php"
-           title="Back to the administration of wgHoliday"> wgHoliday <img src="<{xoAdminIcons 'home.png'}>"
-                                                                       alt="Back to the Administration of wgHoliday">
+           title="Zur Administration von wgHoliday"> wgHoliday <img src="<{xoAdminIcons 'home.png'}>"
+                                                                    alt="Zur Administration von wgHoliday">
         </a></h1>
-    <!-- -----Help Content ---------- -->
-    <h4 class="odd">Description</h4>
-    <p class="even">
-        The wgHoliday module can be used to modules in XOOPS<br><br>
-    </p>
-    <h4 class="odd">Install/uninstall</h4>
-    <p class="even">
-No special measures necessary, follow the standard installation process and extract the wgholiday folder into the ../modules directory. Install the module through Admin -> System Module -> Modules. <br><br>
-Detailed instructions on installing modules are available in the <a href="https://goo.gl/adT2i">XOOPS Operations Manual</a>
-    </p>
-    <h4 class="odd">Features</h4>
-    <p class="even">
-        The ModuleBuilder module continues to expand, to get to the conditions to create modules, more and more sophisticated.<br>
-        For this reason, I invite all developers to report and send in svn any changes or additions to this module, so that we can jointly contribute to the development <br><br>
-    </p>
-    <h4 class="odd">Tutorial</h4>
-    <p class="even">
-        You can find a more detailed to this Video Tutorial <a href="https://www.youtube.com/watch?v=dg7zGFCopxY" rel="external">here</a>
-    </p>
-    <!-- -----Help Content ---------- -->
+
+    <div class="wrapper">
+        <header class="hero">
+            <h2>wgHoliday</h2>
+            <p>Verwaltung von Feiertagen und Ereignissen für XOOPS</p>
+            <p>
+                Erstellen, verwalten und anzeigen von zeitabhängigen Feiertagen,
+                Ankündigungen und Ereignissen auf Ihrer XOOPS-Website.
+            </p>
+            <span class="badge">Version 1.0.0 · Beta 1</span>
+        </header>
+
+        <section class="card">
+            <h3>Willkommen</h3>
+            <p>
+                Willkommen auf der <strong>wgHoliday</strong>-Hilfeseite.
+                Dieses Modul bietet eine flexible Möglichkeit zur Verwaltung
+                von Feiertagen und anderen zeitabhängigen Ereignissen in XOOPS.
+            </p>
+            <p>
+                Ereignisse können einen Titel, Kopfbereich, Hauptinhalt,
+                Fußbereich und ein Bild enthalten.
+                Sie können festlegen, wann ein Ereignis aktiv ist und wie
+                und wo es Ihren Besuchern angezeigt werden soll.
+            </p>
+            <div class="info">
+                Die Grundidee von wgHoliday besteht darin, Informationen zu
+                einem Ereignis als Block und in einem Modal-Fenster anzuzeigen.
+                Das Modal-Fenster soll sicherstellen, dass alle Besucher der
+                Website wichtige Informationen zum Ereignis unmittelbar sehen.
+            </div>
+            <div class="success">
+                <strong>Tipp:</strong>
+                wgHoliday ist nicht nur auf öffentliche Feiertage beschränkt.
+                Sie können es auch für saisonale Hinweise, Ankündigungen,
+                besondere Öffnungszeiten, Kampagnen, Erinnerungen und andere
+                zeitlich begrenzte Inhalte verwenden.
+            </div>
+        </section>
+
+        <section class="card">
+            <h3>Inhalt</h3>
+            <div class="toc">
+                <a href="#getting-started">Erste Schritte</a>
+                <a href="#events">Ereignisse verwalten</a>
+                <a href="#event-content">Inhalt eines Ereignisses</a>
+                <a href="#display">Anzeigeoptionen</a>
+                <a href="#validity">Gültigkeitsoptionen</a>
+                <a href="#images">Bilder</a>
+                <a href="#spotlight">Events Spotlight</a>
+                <a href="#settings">Moduleinstellungen</a>
+                <a href="#permissions">Berechtigungen</a>
+                <a href="#troubleshooting">Fehlerbehebung</a>
+                <a href="#support">Support</a>
+            </div>
+        </section>
+
+        <section class="card" id="getting-started">
+            <h3>Erste Schritte</h3>
+            <p>
+                Nach der Installation von wgHoliday öffnen Sie das Modul
+                über den XOOPS-Administrationsbereich.
+            </p>
+            <ol class="steps">
+                <li>
+                    Öffnen Sie <strong>Administration → Module</strong>.
+                </li>
+                <li>
+                    Öffnen Sie <strong>wgHoliday</strong>.
+                </li>
+                <li>
+                    Erstellen Sie Ihr erstes Ereignis.
+                </li>
+                <li>
+                    Legen Sie die Daten und Anzeigeoptionen des Ereignisses fest.
+                </li>
+                <li>
+                    Speichern Sie das Ereignis und überprüfen Sie das Ergebnis
+                    im Frontend.
+                </li>
+            </ol>
+            <div class="success">
+                <strong>Empfohlener Arbeitsablauf:</strong>
+                Erstellen Sie zunächst das Ereignis, konfigurieren Sie den
+                Gültigkeitszeitraum und den Status und entscheiden Sie
+                anschließend, ob es auf der Website, in einem Modal-Fenster
+                oder über den Events-Spotlight-Block angezeigt werden soll.
+            </div>
+            <div class="success">
+                <strong>Testdaten:</strong>
+                Nach der Installation von wgHoliday können Sie auch Testdaten
+                laden, um das Modul direkt in Aktion zu sehen.
+            </div>
+        </section>
+
+        <section class="card" id="events">
+            <h3>Ereignisse verwalten</h3>
+            <p>
+                Der Bereich zur Ereignisverwaltung ist der zentrale Bestandteil
+                von wgHoliday. Hier können Administratoren alle Feiertage und
+                Ereignisse erstellen und verwalten.
+            </p>
+
+            <h4>Verfügbare Aktionen</h4>
+            <ul>
+                <li><strong>Ereignis hinzufügen</strong> – ein neues Ereignis erstellen.</li>
+                <li><strong>Ereignis bearbeiten</strong> – ein vorhandenes Ereignis ändern.</li>
+                <li><strong>Ereignis klonen</strong> – eine Kopie eines vorhandenen Ereignisses erstellen.</li>
+                <li><strong>Ereignis löschen</strong> – ein Ereignis entfernen.</li>
+            </ul>
+            <p>
+                Das Klonen ist besonders nützlich, wenn mehrere Ereignisse
+                ein ähnliches Layout oder eine ähnliche Inhaltsstruktur
+                verwenden.
+            </p>
+        </section>
+
+        <section class="card" id="event-content">
+            <h3>Inhalt eines Ereignisses</h3>
+            <p>
+                Ein Ereignis kann aus mehreren Inhaltsbereichen bestehen.
+                Dadurch können sowohl einfache Feiertagshinweise als auch
+                umfangreichere Ankündigungen erstellt werden.
+            </p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Feld</th>
+                        <th>Verwendung</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><strong>Titel</strong></td>
+                        <td>Der Haupttitel des Ereignisses.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Kopfbereich</strong></td>
+                        <td>Optionaler Inhalt, der vor dem Hauptinhalt angezeigt wird.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Hauptinhalt</strong></td>
+                        <td>Der eigentliche Inhalt des Ereignisses.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Fußbereich</strong></td>
+                        <td>Optionaler zusätzlicher Inhalt, der nach dem Hauptinhalt angezeigt wird.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Bild</strong></td>
+                        <td>Ein optionales Bild, das dem Ereignis zugeordnet ist.</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>
+                Für den Inhalt des Ereignisses kann der ausgewählte XOOPS-Editor
+                verwendet werden. Der verfügbare Editor hängt von den in Ihrem
+                XOOPS-System installierten Editoren ab.
+            </p>
+        </section>
+
+        <section class="card" id="display">
+            <h3>Anzeigeoptionen</h3>
+            <p>
+                Mit wgHoliday können Sie festlegen, wie ein Ereigniselement
+                den Besuchern präsentiert wird. Dies ist besonders hilfreich,
+                wenn Sie unterschiedliche Darstellungen für den Spotlight-Block
+                und das Modal-Fenster verwenden möchten.
+            </p>
+
+            <h4>Anzeige auf der Website</h4>
+            <p>
+                Ein Ereigniselement kann direkt auf den Frontend-Seiten des
+                Moduls angezeigt werden.
+            </p>
+
+            <h4>Anzeige im Modal-Fenster</h4>
+            <p>
+                Ein Ereigniselement kann auch für die Anzeige in einem
+                Modal-Fenster konfiguriert werden.
+            </p>
+
+            <h4>Beides</h4>
+            <p>
+                Wenn gewünscht, kann ein Ereignis sowohl auf der Website als
+                auch in einem Modal-Fenster angezeigt werden.
+            </p>
+
+            <h4>Nicht anzeigen</h4>
+            <p>
+                Ereignisse, die gespeichert bleiben, aktuell aber nicht
+                angezeigt werden sollen, können deaktiviert werden.
+            </p>
+        </section>
+
+        <section class="card" id="validity">
+            <h3>Gültigkeit eines Ereignisses festlegen</h3>
+            <p>
+                Mit wgHoliday können Sie festlegen, wann ein Ereigniselement den Besuchern angezeigt wird.
+            </p>
+            <p>
+                Sie können zwischen zwei Möglichkeiten wählen, die in den Moduleinstellungen definiert werden können:
+            </p>
+            <ul>
+                <li>
+                    Ein Ereignis manuell auf <strong>Online</strong> oder
+                    <strong>Offline</strong> setzen.
+                </li>
+                <li>
+                    Start- und Enddatum des Ereignisses verwenden, um den
+                    Zeitraum automatisch zu steuern, in dem das Ereignis
+                    als aktiv gilt.
+                </li>
+            </ul>
+
+            <h4>Ereignis manuell auf Online oder Offline setzen</h4>
+            <p>
+                Der Status eines Ereignisses kann einfach durch Anklicken
+                des Statussymbols geändert werden. Alternativ können Sie
+                das Ereignis bearbeiten und den gewünschten Wert für
+                <strong>Status</strong> auswählen.
+            </p>
+
+            <h4>Start- und Enddatum des Ereignisses festlegen</h4>
+            <p>
+                Sie können bereits im Voraus ein Start- und ein Enddatum
+                definieren. Das Ereignis wird dann automatisch angezeigt
+                beziehungsweise ausgeblendet, sobald der entsprechende
+                Zeitraum erreicht oder verlassen wird.
+            </p>
+        </section>
+
+        <section class="card" id="images">
+            <h3>Ereignisbilder</h3>
+            <p>
+                Bilder können Ereignissen zugeordnet und relativ zum
+                Hauptinhalt positioniert werden.
+            </p>
+
+            <h4>Verfügbare Bildpositionen</h4>
+            <ul>
+                <li>Vor dem Hauptinhalt</li>
+                <li>Links neben dem Hauptinhalt</li>
+                <li>Rechts neben dem Hauptinhalt</li>
+                <li>Nach dem Hauptinhalt</li>
+            </ul>
+            <p>
+                Einschränkungen für den Bildupload können über die
+                Moduleinstellungen konfiguriert werden.
+            </p>
+            <p>
+                Administratoren können die maximale Bildgröße, die erlaubten
+                MIME-Typen sowie die maximale Breite und Höhe konfigurieren.
+            </p>
+            <div class="warning">
+                <strong>Wichtig:</strong>
+                Die tatsächlich mögliche Uploadgröße wird zusätzlich durch
+                die PHP-Einstellungen <code>upload_max_filesize</code> und
+                <code>post_max_size</code> beeinflusst.
+            </div>
+        </section>
+
+        <section class="card" id="spotlight">
+            <h3>Events Spotlight</h3>
+            <p>
+                wgHoliday arbeitet hauptsächlich mit einem
+                <strong>Events-Spotlight-Block</strong>.
+                Der Block kann verwendet werden, um ein Ereignis außerhalb
+                des normalen Modul-Inhalts hervorzuheben.
+            </p>
+            <ol>
+                <li>Öffnen Sie die XOOPS-Blockverwaltung.</li>
+                <li>Suchen Sie den <strong>Events-Spotlight</strong>-Block.</li>
+                <li>Platzieren Sie den Block an der gewünschten Position im Theme.</li>
+                <li>Konfigurieren Sie den Block entsprechend Ihren Anforderungen.</li>
+                <li>Speichern Sie die Blockeinstellungen.</li>
+            </ol>
+            <p>
+                Der Spotlight-Block eignet sich besonders zur Anzeige wichtiger
+                bevorstehender Feiertage, saisonaler Informationen oder
+                zeitlich begrenzter Ankündigungen in einer Seitenleiste oder
+                an einer anderen verfügbaren Blockposition.
+            </p>
+        </section>
+
+        <section class="card" id="settings">
+            <h3>Moduleinstellungen</h3>
+            <p>
+                Die Konfiguration des Moduls kann über die XOOPS-Modulverwaltung
+                aufgerufen werden.
+            </p>
+
+            <h4>Meta-Informationen</h4>
+            <ul>
+                <li>
+                    <strong>Meta-Beschreibung</strong> – Beschreibung des Moduls.
+                </li>
+                <li>
+                    <strong>Schlüsselwörter</strong> – Schlüsselwörter, die
+                    mit dem Modul verbunden sind.
+                </li>
+            </ul>
+
+            <h4>Editor</h4>
+            <ul>
+                <li>
+                    Auswahl des XOOPS-Editors für den Ereignisinhalt.
+                </li>
+                <li>
+                    Festlegung der maximalen Zeichenanzahl des Editors.
+                </li>
+            </ul>
+
+            <h4>Bildupload</h4>
+            <ul>
+                <li>Maximale Bildgröße</li>
+                <li>Erlaubte Bild-MIME-Typen</li>
+                <li>Maximale Bildbreite</li>
+                <li>Maximale Bildhöhe</li>
+            </ul>
+
+            <h4>Seitennummerierung</h4>
+            <p>
+                Für den Administrationsbereich und die für Benutzer sichtbaren
+                Seiten können separate Werte für die Seitennummerierung
+                festgelegt werden.
+            </p>
+
+            <h4>Kopf- und Fußbereich</h4>
+            <p>
+                Die Verwendung der Kopf- und Fußbereiche des Moduls kann
+                unabhängig voneinander aktiviert oder deaktiviert werden.
+            </p>
+
+            <h4>Brotkrümelnavigation</h4>
+            <p>
+                Die Breadcrumb-Navigation kann entsprechend den Anforderungen
+                Ihres Website-Themes aktiviert oder deaktiviert werden.
+            </p>
+
+            <h4>Weitere Optionen</h4>
+            <ul>
+                <li>Automatische Blockverwaltung</li>
+                <li>Schaltfläche für Testereignisse</li>
+                <li>Clone-Tab</li>
+                <li>Feedback-Tab</li>
+                <li>Copyright-Anzeige</li>
+            </ul>
+        </section>
+
+        <section class="card" id="permissions">
+            <h3>Berechtigungen</h3>
+            <p>
+                Die XOOPS-Berechtigungen sollten entsprechend den auf Ihrer
+                Website verwendeten Benutzergruppen konfiguriert werden.
+            </p>
+            <p>
+                Wenn Benutzer Ereignisse über das Frontend einreichen dürfen,
+                stellen Sie sicher, dass die entsprechenden XOOPS-Berechtigungen
+                für ihre Benutzergruppe aktiviert sind.
+            </p>
+            <div class="warning">
+                <strong>Sicherheitsempfehlung:</strong>
+                Vergeben Sie Berechtigungen zur Verwaltung und zum Löschen
+                von Ereignissen ausschließlich an vertrauenswürdige
+                Benutzergruppen.
+            </div>
+        </section>
+
+        <section class="card">
+            <h3>Typische Anwendungsbereiche</h3>
+            <p>
+                wgHoliday kann für viele verschiedene Arten von zeitlich
+                begrenzten Inhalten verwendet werden:
+            </p>
+            <ul>
+                <li>Saisonale Ankündigungen</li>
+                <li>Weihnachts- oder Osterhinweise</li>
+                <li>Besondere Öffnungszeiten</li>
+                <li>Betriebsferien</li>
+                <li>Temporäre Website-Ankündigungen</li>
+                <li>Kampagnen und Aktionen</li>
+                <li>Community-Veranstaltungen</li>
+                <li>Wichtige Erinnerungen</li>
+            </ul>
+        </section>
+
+        <section class="card" id="troubleshooting">
+            <h3>Fehlerbehebung</h3>
+
+            <h4>Das Ereignis wird nicht angezeigt</h4>
+            <ul>
+                <li>Prüfen Sie, ob das Ereignis aktiviert ist.</li>
+                <li>Prüfen Sie Start- und Enddatum des Ereignisses.</li>
+                <li>Prüfen Sie den ausgewählten Anzeigemodus.</li>
+                <li>Prüfen Sie die Berechtigungen der aktuellen Benutzergruppe.</li>
+                <li>Leeren Sie bei Bedarf den XOOPS-Cache.</li>
+            </ul>
+
+            <h4>Das Bild kann nicht hochgeladen werden</h4>
+            <ul>
+                <li>Prüfen Sie die konfigurierte maximale Bildgröße.</li>
+                <li>Prüfen Sie, ob der MIME-Typ des Bildes erlaubt ist.</li>
+                <li>Prüfen Sie die PHP-Einstellung <code>upload_max_filesize</code>.</li>
+                <li>Prüfen Sie die PHP-Einstellung <code>post_max_size</code>.</li>
+                <li>Prüfen Sie die konfigurierten maximalen Bildabmessungen.</li>
+            </ul>
+
+            <h4>Der Spotlight-Block wird nicht angezeigt</h4>
+            <ul>
+                <li>Prüfen Sie, ob der Block aktiviert ist.</li>
+                <li>Prüfen Sie die Position des Blocks im XOOPS-System.</li>
+                <li>Prüfen Sie die Blockberechtigungen.</li>
+                <li>Prüfen Sie, ob geeignete Ereignisse vorhanden sind.</li>
+                <li>Leeren Sie den XOOPS-Cache.</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h3>Installation &amp; Voraussetzungen</h3>
+            <p>
+                wgHoliday ist ein XOOPS-Modul und verwendet den standardmäßigen
+                XOOPS-Mechanismus für die Installation und Aktualisierung
+                von Modulen.
+            </p>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Komponente</th>
+                        <th>Minimale Version</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>XOOPS</td>
+                        <td>2.7.3</td>
+                    </tr>
+                    <tr>
+                        <td>PHP</td>
+                        <td>8.4</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>
+                Das Modul stellt über das standardmäßige XOOPS-Modul-Framework
+                Funktionen für Installation, Aktualisierung und Deinstallation
+                bereit.
+            </p>
+        </section>
+
+        <section class="card" id="support">
+            <h3>Support &amp; Entwicklung</h3>
+            <p>
+                wgHoliday wird von
+                <strong>Goffy – Wedega</strong>
+                für die XOOPS-Umgebung entwickelt.
+            </p>
+            <p>
+                Für Supportanfragen, Fehlerberichte und Diskussionen zur
+                Weiterentwicklung verwenden Sie bitte die XOOPS-Community-
+                Ressourcen.
+            </p>
+            <p>
+                <strong>Projekt:</strong>
+                <a href="https://github.com/ggoffy/wgholiday"
+                   target="_blank"
+                   rel="noopener">
+                    GitHub – ggoffy/wgholiday
+                </a>
+            </p>
+            <p>
+                <strong>XOOPS-Support:</strong>
+                <a href="https://xoops.org/modules/newbb"
+                   target="_blank"
+                   rel="noopener">
+                    XOOPS-Supportforum
+                </a>
+            </p>
+            <p>
+                <strong>Autor:</strong>
+                Goffy – Wedega<br>
+                <strong>Website:</strong>
+                <a href="https://wedega.com"
+                   target="_blank"
+                   rel="noopener">
+                    wedega.com
+                </a><br>
+                <strong>E-Mail:</strong>
+                webmaster@wedega.com
+            </p>
+        </section>
+
+        <section class="card">
+            <h3>Lizenz</h3>
+            <p>
+                wgHoliday wird unter der
+                <strong>GNU General Public License, Version 2.0 oder höher</strong>
+                veröffentlicht.
+            </p>
+            <p>
+                Die vollständigen Lizenzbedingungen finden Sie im Quellcode
+                und in den mit dem Modul ausgelieferten Lizenzinformationen.
+            </p>
+        </section>
+
+        <footer class="footer">
+            <p>
+                wgHoliday · Verwaltung von Feiertagen und Ereignissen für XOOPS
+            </p>
+            <p>
+                Version 1.0.0 · Beta 1
+            </p>
+        </footer>
+    </div>
 </div>
