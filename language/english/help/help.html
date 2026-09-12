@@ -1,27 +1,686 @@
+<<style>
+    :root {
+        --primary: #2d6cdf;
+        --primary-dark: #1f4fa8;
+        --secondary: #f4f7fb;
+        --border: #dfe5ee;
+        --text: #263238;
+        --muted: #687582;
+        --success: #2e8b57;
+        --warning: #c98200;
+        --white: #ffffff;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        background: var(--secondary);
+        color: var(--text);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Helvetica, Arial, sans-serif;
+        line-height: 1.65;
+    }
+
+    .hero {
+        background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+        color: var(--white);
+        border-radius: 14px;
+        padding: 45px 40px;
+        margin-bottom: 30px;
+        box-shadow: 0 8px 25px rgba(31, 79, 168, 0.18);
+    }
+
+    .hero h1 {
+        margin: 0 0 10px;
+        font-size: 38px;
+        line-height: 1.2;
+    }
+
+    .hero p {
+        margin: 8px 0;
+        font-size: 17px;
+        opacity: 0.94;
+    }
+
+    .badge {
+        display: inline-block;
+        margin-top: 15px;
+        padding: 5px 12px;
+        border-radius: 20px;
+        background: rgba(255,255,255,0.18);
+        font-size: 13px;
+        font-weight: 600;
+    }
+
+    .card {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 28px 30px;
+        margin-bottom: 22px;
+        box-shadow: 0 3px 12px rgba(30, 50, 80, 0.05);
+    }
+
+    h2 {
+        margin-top: 0;
+        color: var(--text-primary);
+        font-size: 25px;
+    }
+
+    h3 {
+        color: var(--primary);
+        margin-top: 26px;
+    }
+    h4 {
+        color: var(--primary);
+    }
+
+    p:last-child {
+        margin-bottom: 0;
+    }
+
+    a {
+        color: var(--primary);
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    .toc {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    .toc a {
+        display: block;
+        background: var(--secondary);
+        border: 1px solid var(--border);
+        padding: 11px 14px;
+        border-radius: 8px;
+        font-weight: 600;
+    }
+
+    .toc a:hover {
+        background: #eaf1ff;
+        text-decoration: none;
+    }
+
+    ul, ol {
+        padding-left: 24px;
+    }
+
+    li {
+        margin-bottom: 7px;
+    }
+
+    .info,
+    .success,
+    .warning {
+        padding: 15px 18px;
+        border-radius: 8px;
+        margin: 18px 0;
+    }
+
+    .info {
+        background: #eef5ff;
+        border-left: 4px solid var(--primary);
+    }
+
+    .success {
+        background: #eef9f2;
+        border-left: 4px solid var(--success);
+    }
+
+    .warning {
+        background: #fff7e8;
+        border-left: 4px solid var(--warning);
+    }
+
+    .steps {
+        counter-reset: steps;
+        list-style: none;
+        padding-left: 0;
+    }
+
+    .steps li {
+        counter-increment: steps;
+        position: relative;
+        padding: 14px 16px 14px 55px;
+        margin-bottom: 10px;
+        background: var(--secondary);
+        border-radius: 8px;
+    }
+
+    .steps li::before {
+        content: counter(steps);
+        position: absolute;
+        left: 15px;
+        top: 12px;
+        width: 28px;
+        height: 28px;
+        line-height: 28px;
+        text-align: center;
+        border-radius: 50%;
+        background: var(--primary);
+        color: var(--white);
+        font-weight: 700;
+    }
+
+    code {
+        padding: 2px 6px;
+        border-radius: 4px;
+        background: #eef1f5;
+        font-family: Consolas, Monaco, monospace;
+        font-size: 0.92em;
+    }
+
+    .table-wrapper {
+        overflow-x: auto;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 15px 0;
+    }
+
+    th,
+    td {
+        padding: 11px 13px;
+        border: 1px solid var(--border);
+        text-align: left;
+        vertical-align: top;
+    }
+
+    th {
+        background: var(--secondary);
+        font-weight: 700;
+    }
+
+    .footer {
+        text-align: center;
+        color: var(--muted);
+        font-size: 13px;
+        margin-top: 35px;
+    }
+
+    @media (max-width: 600px) {
+        .wrapper {
+            padding: 15px 12px 40px;
+        }
+
+        .hero {
+            padding: 30px 24px;
+        }
+
+        .hero h1 {
+            font-size: 30px;
+        }
+
+        .card {
+            padding: 22px 20px;
+        }
+    }
+</style>
+
 <div id="help-template" class="outer">
     <h1 class="head">Help:
         <a class="ui-corner-all tooltip" href="<{$xoops_url}>/modules/wgholiday/admin/index.php"
            title="Back to the administration of wgHoliday"> wgHoliday <img src="<{xoAdminIcons 'home.png'}>"
-                                                                       alt="Back to the Administration of wgHoliday">
+                                                                           alt="Back to the Administration of wgHoliday">
         </a></h1>
-    <!-- -----Help Content ---------- -->
-    <h4 class="odd">Description</h4>
-    <p class="even">
-        The wgHoliday module can be used to modules in XOOPS<br><br>
-    </p>
-    <h4 class="odd">Install/uninstall</h4>
-    <p class="even">
-No special measures necessary, follow the standard installation process and extract the wgholiday folder into the ../modules directory. Install the module through Admin -> System Module -> Modules. <br><br>
-Detailed instructions on installing modules are available in the <a href="https://goo.gl/adT2i">XOOPS Operations Manual</a>
-    </p>
-    <h4 class="odd">Features</h4>
-    <p class="even">
-        The ModuleBuilder module continues to expand, to get to the conditions to create modules, more and more sophisticated.<br>
-        For this reason, I invite all developers to report and send in svn any changes or additions to this module, so that we can jointly contribute to the development <br><br>
-    </p>
-    <h4 class="odd">Tutorial</h4>
-    <p class="even">
-        You can find a more detailed to this Video Tutorial <a href="https://www.youtube.com/watch?v=dg7zGFCopxY" rel="external">here</a>
-    </p>
-    <!-- -----Help Content ---------- -->
+
+    <div class="wrapper">
+        <header class="hero">
+            <h2>wgHoliday</h2>
+            <p>Holiday and event management for XOOPS</p>
+            <p>
+                Create, manage and display time-based holidays, announcements
+                and events on your XOOPS website.
+            </p>
+            <span class="badge">Version 1.0.0 · Beta 1</span>
+        </header>
+
+        <section class="card">
+            <h3>Welcome</h3>
+            <p>
+                Welcome to the <strong>wgHoliday</strong> help page.
+                This module provides a flexible way to manage holidays and
+                other time-dependent events in XOOPS.
+            </p>
+            <p>
+                Events can contain a title, header, body, footer and image.
+                You can define when an event is active and decide how and
+                where it should be displayed to your visitors.
+            </p>
+            <div class="info">
+                The basic idea of wgHoliday is to shown information about an event as a block and with a modal.
+                The modal is intended to ensure that all website visitors see the important event information immediately.
+            </div>
+            <div class="success">
+                <strong>Tip:</strong>
+                wgHoliday is not limited to public holidays. You can also use
+                it for seasonal messages, announcements, special opening hours,
+                campaigns, reminders and other temporary content.
+            </div>
+        </section>
+
+        <section class="card">
+            <h3>Contents</h3>
+
+            <div class="toc">
+                <a href="#getting-started">Getting Started</a>
+                <a href="#events">Managing Events</a>
+                <a href="#event-content">Event Content</a>
+                <a href="#display">Display Options</a>
+                <a href="#validity">Validity Options</a>
+                <a href="#images">Images</a>
+                <a href="#spotlight">Events Spotlight</a>
+                <a href="#settings">Module Settings</a>
+                <a href="#permissions">Permissions</a>
+                <a href="#troubleshooting">Troubleshooting</a>
+                <a href="#support">Support</a>
+            </div>
+        </section>
+
+        <section class="card" id="getting-started">
+            <h3>Getting Started</h3>
+            <p>
+                After installing wgHoliday, open the module from the XOOPS
+                administration area.
+            </p>
+            <ol class="steps">
+                <li>Open <strong>Administration → Modules</strong>.</li>
+                <li>Open <strong>wgHoliday</strong>.</li>
+                <li>Create your first event.</li>
+                <li>Define the event dates and display options.</li>
+                <li>Save the event and check the result on the front end.</li>
+            </ol>
+            <div class="success">
+                <strong>Recommended workflow:</strong>
+                Create the event first, configure its date range and status,
+                and then decide whether it should appear on the website,
+                in a modal window, or through the Events Spotlight block.
+            </div>
+            <div class="success">
+                <strong>After installing wgHoliday you can also load test data to see module in action.:</strong>
+            </div>
+        </section>
+
+        <section class="card" id="events">
+            <h3>Managing Events</h3>
+            <p>
+                The event administration area is the central part of wgHoliday.
+                It allows administrators to create and maintain all holidays
+                and events.
+            </p>
+            <h4>Available actions</h4>
+            <ul>
+                <li><strong>Add Event</strong> – create a new event.</li>
+                <li><strong>Edit Event</strong> – modify an existing event.</li>
+                <li><strong>Clone Event</strong> – create a copy of an existing event.</li>
+                <li><strong>Delete Event</strong> – remove an event.</li>
+            </ul>
+            <p>
+                Cloning is particularly useful when several events use a similar
+                layout or content structure.
+            </p>
+        </section>
+
+        <section class="card" id="event-content">
+            <h3>Event Content</h3>
+            <p>
+                An event can contain several content areas. This makes it possible
+                to create simple holiday notices as well as more detailed
+                announcements.
+            </p>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Purpose</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><strong>Title</strong></td>
+                        <td>The main title of the event.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Header</strong></td>
+                        <td>Optional content displayed before the main body.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Body</strong></td>
+                        <td>The main event content.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Footer</strong></td>
+                        <td>Optional additional content displayed after the body.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Image</strong></td>
+                        <td>An optional image associated with the event.</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>
+                The selected XOOPS editor can be used for the event content.
+                The available editor depends on the editors installed in your
+                XOOPS system.
+            </p>
+        </section>
+
+        <section class="card" id="display">
+            <h3>Display Options</h3>
+            <p>
+                wgHoliday allows you to control how an event element is presented to
+                visitors. This is useful if you want to make different views of spotlight block and modal window.
+            </p>
+            <h4>Website display</h4>
+            <p>
+                An event element can be displayed directly on the module's front-end
+                pages.
+            </p>
+            <h4>Modal display</h4>
+            <p>
+                An event element can also be configured for display in a modal window.
+            </p>
+            <h4>Both</h4>
+            <p>
+                When appropriate, an event can be displayed both on the website
+                and in a modal window.
+            </p>
+            <h4>Do not display</h4>
+            <p>
+                Events that should remain stored but should not currently be
+                shown can be disabled.
+            </p>
+        </section>
+
+        <section class="card" id="validity">
+            <h3>Setting validity of event</h3>
+            <p>
+                wgHoliday allows you to control when an event element is presented to
+                visitors.
+            </p>
+            <p>You can select between two possibilites, which you can define in module preferences:
+            <ul>
+                <li>Simple setting an event manually on- or offline</li>
+                <li>Use the event start and end dates to control the period in which an event is considered active.</li>
+            </ul>
+            </p>
+            <h4>Simple setting an event manually on- or offline</h4>
+            <p>
+                The status of an event can be changed simply with clicking on the status symbol
+                or by editing an event and setting "Status" to your wish.
+            </p>
+            <h4>Define a date from and date to when the event should be sho</h4>
+            <p>
+                You can define a date from and date end in advance and then the events will be shown/hidded automatically.
+            </p>
+        </section>
+
+        <section class="card" id="images">
+            <h3>Event Images</h3>
+            <p>
+                Images can be attached to events and positioned relative to the
+                event body.
+            </p>
+            <h4>Available image positions</h4>
+            <ul>
+                <li>Before the body</li>
+                <li>Left of the body</li>
+                <li>Right of the body</li>
+                <li>After the body</li>
+            </ul>
+            <p>
+                Image upload restrictions can be controlled through the module
+                configuration.
+            </p>
+            <p>
+                Administrators can configure the maximum image size, accepted
+                image MIME types, maximum width and maximum height.
+            </p>
+            <div class="warning">
+                <strong>Important:</strong>
+                The effective upload size is also affected by the PHP settings
+                <code>upload_max_filesize</code> and <code>post_max_size</code>.
+            </div>
+        </section>
+
+        <section class="card" id="spotlight">
+            <h3>Events Spotlight</h3>
+            <p>
+                wgHoliday works primary with an <strong>Events Spotlight</strong> block.
+                The block should be used to highlight an event outside the normal
+                module content.
+            </p>
+            <ol>
+                <li>Open the XOOPS block administration.</li>
+                <li>Locate the <strong>Events Spotlight</strong> block.</li>
+                <li>Place the block in the desired theme position.</li>
+                <li>Configure the block according to your requirements.</li>
+                <li>Save the block settings.</li>
+            </ol>
+            <p>
+                The spotlight block is especially useful for displaying important
+                upcoming holidays, seasonal information or temporary announcements
+                in a sidebar or another block position.
+            </p>
+        </section>
+
+        <section class="card" id="settings">
+            <h3>Module Settings</h3>
+            <p>
+                The module configuration can be accessed through the XOOPS
+                module administration.
+            </p>
+
+            <h4>Meta information</h4>
+            <ul>
+                <li><strong>Meta description</strong> – description used for the module.</li>
+                <li><strong>Keywords</strong> – keywords associated with the module.</li>
+            </ul>
+
+            <h4>Editor</h4>
+            <ul>
+                <li>Select the XOOPS editor used for event content.</li>
+                <li>Define the maximum editor character limit.</li>
+            </ul>
+
+            <h4>Image upload</h4>
+            <ul>
+                <li>Maximum image size</li>
+                <li>Allowed image MIME types</li>
+                <li>Maximum image width</li>
+                <li>Maximum image height</li>
+            </ul>
+
+            <h4>Pagination</h4>
+            <p>
+                Separate pagination values can be configured for the administration
+                area and the user-facing pages.
+            </p>
+            <h4>Header and footer</h4>
+            <p>
+                The module allows the use of its header and footer areas to be
+                enabled or disabled independently.
+            </p>
+
+            <h4>Breadcrumbs</h4>
+            <p>
+                Breadcrumb navigation can be enabled or disabled according to
+                the requirements of your website theme.
+            </p>
+
+            <h4>Additional options</h4>
+            <ul>
+                <li>Automatic block handling</li>
+                <li>Sample event button</li>
+                <li>Clone tab</li>
+                <li>Feedback tab</li>
+                <li>Copyright display</li>
+            </ul>
+        </section>
+
+        <section class="card" id="permissions">
+            <h3>Permissions</h3>
+            <p>
+                XOOPS permissions should be configured according to the roles
+                used on your website.
+            </p>
+            <p>
+                If users should be allowed to submit events from the front end,
+                make sure the corresponding XOOPS permissions are enabled for
+                their user group.
+            </p>
+            <div class="warning">
+                <strong>Security recommendation:</strong>
+                Only grant event administration and deletion permissions to
+                trusted user groups.
+            </div>
+        </section>
+
+        <section class="card">
+            <h3>Typical Use Cases</h3>
+            <p>wgHoliday can be used for many different types of temporary content:</p>
+            <ul>
+                <li>Seasonal announcements</li>
+                <li>Christmas or Easter messages</li>
+                <li>Special opening hours</li>
+                <li>Company holidays</li>
+                <li>Temporary website announcements</li>
+                <li>Campaigns and promotions</li>
+                <li>Community events</li>
+                <li>Important reminders</li>
+            </ul>
+        </section>
+
+        <section class="card" id="troubleshooting">
+            <h3>Troubleshooting</h3>
+            <h4>The event is not visible</h4>
+            <ul>
+                <li>Check whether the event is enabled.</li>
+                <li>Check the event start and end dates.</li>
+                <li>Check the selected display mode.</li>
+                <li>Check the permissions of the current user group.</li>
+                <li>Clear the XOOPS cache if necessary.</li>
+            </ul>
+
+            <h4>The image cannot be uploaded</h4>
+            <ul>
+                <li>Check the configured maximum image size.</li>
+                <li>Check whether the image MIME type is allowed.</li>
+                <li>Check PHP <code>upload_max_filesize</code>.</li>
+                <li>Check PHP <code>post_max_size</code>.</li>
+                <li>Check the configured maximum image dimensions.</li>
+            </ul>
+
+            <h4>The spotlight block does not appear</h4>
+            <ul>
+                <li>Check that the block is enabled.</li>
+                <li>Check the block placement in XOOPS.</li>
+                <li>Check block permissions.</li>
+                <li>Check that suitable events are available.</li>
+                <li>Clear the XOOPS cache.</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h3>Installation &amp; Requirements</h3>
+            <p>
+                wgHoliday is a XOOPS module and uses the standard XOOPS module
+                installation and update mechanism.
+            </p>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Component</th>
+                        <th>Minimum Version</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>XOOPS</td>
+                        <td>2.7.3</td>
+                    </tr>
+                    <tr>
+                        <td>PHP</td>
+                        <td>8.4</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>
+                The module provides installation, update and uninstall handlers
+                through the standard XOOPS module framework.
+            </p>
+        </section>
+
+        <section class="card" id="support">
+            <h3>Support &amp; Development</h3>
+            <p>
+                wgHoliday is developed by
+                <strong>Goffy – Wedega</strong>
+                for the XOOPS environment.
+            </p>
+            <p>
+                For support, bug reports and development discussions, please use
+                the XOOPS community resources.
+            </p>
+            <p>
+                <strong>Project:</strong>
+                <a href="https://github.com/ggoffy/wgholiday" target="_blank" rel="noopener">GitHub – ggoffy/wgholiday</a>
+            </p>
+            <p>
+                <strong>XOOPS Support:</strong>
+                <a href="https://xoops.org/modules/newbb" target="_blank" rel="noopener">XOOPS Support Forum</a>
+            </p>
+            <p>
+                <strong>Author:</strong>
+                Goffy – Wedega<br>
+                <strong>Website:</strong>
+                <a href="https://wedega.com"
+                   target="_blank"
+                   rel="noopener">
+                    wedega.com
+                </a><br>
+                <strong>Email:</strong>
+                webmaster@wedega.com
+            </p>
+        </section>
+
+        <section class="card">
+            <h3>License</h3>
+            <p>
+                wgHoliday is released under the
+                <strong>GNU General Public License, version 2.0 or later</strong>.
+            </p>
+            <p>
+                Please refer to the source code and license information included
+                with the module for the complete license terms.
+            </p>
+        </section>
+
+        <footer class="footer">
+            <p>
+                wgHoliday · Holiday &amp; Event Management for XOOPS
+            </p>
+            <p>
+                Version 1.0.0 · Beta 1
+            </p>
+        </footer>
+    </div>
 </div>
