@@ -47,7 +47,6 @@ $GLOBALS['xoopsTpl']->assign('wgholiday_icons_url', \WGHOLIDAY_ICONS_URL);
 $eventsCount = $eventsHandler->getCountEvents();
 $GLOBALS['xoopsTpl']->assign('eventsCount', $eventsCount);
 if ($eventsCount > 0) {
-
     $start = Request::getInt('start');
     $limit = Request::getInt('limit', $helper->getConfig('userpager'));
     $eventsAll = $eventsHandler->getAllEvents($start, $limit);
@@ -66,6 +65,8 @@ if ($eventsCount > 0) {
         $GLOBALS['xoopsTpl']->assign('pagenav', $pagenav->renderNav());
     }
     $GLOBALS['xoopsTpl']->assign('token_wgholiday', $GLOBALS['xoopsSecurity']->getTokenHTML());
+    $permEdit = \is_object($GLOBALS['xoopsUser']) && $GLOBALS['xoopsUser']->isAdmin($GLOBALS['xoopsModule']->mid());
+    $GLOBALS['xoopsTpl']->assign('perm_edit',$permEdit);
 }
 
 // Meta keywords

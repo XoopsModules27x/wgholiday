@@ -40,6 +40,10 @@ if('change_status' === $op) {
     if (!$GLOBALS['xoopsSecurity']->check()) {
         \redirect_header('index.php', 3, \implode(',', $GLOBALS['xoopsSecurity']->getErrors()));
     }
+    $permEdit = \is_object($GLOBALS['xoopsUser']) && $GLOBALS['xoopsUser']->isAdmin($GLOBALS['xoopsModule']->mid());
+    if (!$permEdit) {
+        \redirect_header('index.php', 3, \_NOPERM);
+    }
     if ($evId > 0) {
         $eventObj = $eventsHandler->get($evId);
         // check whether object is valid
