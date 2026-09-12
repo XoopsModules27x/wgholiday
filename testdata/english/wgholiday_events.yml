@@ -1,0 +1,34 @@
+-
+    id: '1'
+    name: test1
+    header: '<p style="text-align: center;"><span style="font-size: x-large; color: #ff3300;">We are on holiday</span></p>'
+    header_display: '1'
+    body: '<p>We are from xxx until xxx on holiday.</p><p>We are available for you again on xxx.</p>'
+    body_display: '0'
+    footer: '<p>Emails will not be read during holiday</p>'
+    footer_display: '1'
+    image: autumn.jpg
+    image_pos: '3'
+    date_showfrom: '1789029160'
+    date_showto: '1820565160'
+    status: '0'
+    date_created: '1789029160'
+    submitter: '1'
+    image_display: '1'
+-
+    id: '2'
+    name: test2
+    header: 'header test 2'
+    header_display: '2'
+    body: 'body test 2'
+    body_display: '0'
+    footer: 'footer test 2'
+    footer_display: '2'
+    image: christmas.jpg
+    image_pos: '0'
+    date_showfrom: '1789071863'
+    date_showto: '1789071863'
+    status: '0'
+    date_created: '1789071863'
+    submitter: '1'
+    image_display: '1'

@@ -1,0 +1,45 @@
+<?php
+
+declare(strict_types=1);
+
+/*
+ You may not change or alter any portion of this comment or credits
+ of supporting developers from this source code or any supporting source code
+ which is considered copyrighted (c) material of the original comment or credit authors.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*/
+
+/**
+ * wgHoliday module for xoops
+ *
+ * @copyright    2025 XOOPS Project (https://xoops.org)
+ * @license      GPL 2.0 or later
+ * @package      wgholiday
+ * @author       Goffy - Wedega - Email:webmaster@wedega.com - Website:https://wedega.com
+ */
+if ($helper->getConfig('show_breadcrumbs') && \count($xoBreadcrumbs) > 0) {
+    $GLOBALS['xoopsTpl']->assign('xoBreadcrumbs', $xoBreadcrumbs);
+}
+$GLOBALS['xoopsTpl']->assign('adv', $helper->getConfig('advertise'));
+
+$GLOBALS['xoopsTpl']->assign('bookmarks', $helper->getConfig('bookmarks'));
+$GLOBALS['xoopsTpl']->assign('fbcomments', $helper->getConfig('fbcomments'));
+
+$GLOBALS['xoopsTpl']->assign('admin', \WGHOLIDAY_ADMIN);
+if ($helper->getConfig('show_copyright')) {
+    $GLOBALS['xoopsTpl']->assign('copyright', $copyright);
+}
+
+// Meta description
+wgholidayMetaDescription((string)$helper->getConfig('metadescription'));
+
+// Paths
+$GLOBALS['xoopsTpl']->assign('xoops_mpageurl', \WGHOLIDAY_URL.'/index.php');
+$GLOBALS['xoopsTpl']->assign('xoops_icons32_url', \XOOPS_ICONS32_URL);
+$GLOBALS['xoopsTpl']->assign('wgholiday_url', \WGHOLIDAY_URL);
+$GLOBALS['xoopsTpl']->assign('wgholiday_upload_url', \WGHOLIDAY_UPLOAD_URL);
+
+require_once \XOOPS_ROOT_PATH . '/footer.php';
