@@ -56,8 +56,8 @@ $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('inde
 if ($helper->getConfig('displaySampleButton')) {
     \xoops_loadLanguage('admin/modulesadmin', 'system');
     require_once \dirname(__DIR__) . '/testdata/index.php';
-    $adminObject->addItemButton(\constant('_CO_WGHOLIDAY_ADD_SAMPLEDATA'), '__DIR__ . /../../testdata/index.php?op=load', 'add');
-    $adminObject->addItemButton(\constant('_CO_WGHOLIDAY_SAVE_SAMPLEDATA'), '__DIR__ . /../../testdata/index.php?op=save', 'add');
+    $adminObject->addItemButton(\constant('_CO_WGHOLIDAY_ADD_SAMPLEDATA'), \WGHOLIDAY_URL . '/testdata/index.php?op=load', 'add');
+    $adminObject->addItemButton(\constant('_CO_WGHOLIDAY_SAVE_SAMPLEDATA'), \WGHOLIDAY_URL . '/testdata/index.php?op=save', 'add');
 //    $adminObject->addItemButton(\constant('_CO_WGHOLIDAY_EXPORT_SCHEMA'), '__DIR__ . /../../testdata/index.php?op=exportschema', 'add');
     $adminObject->displayButton('left');
 }

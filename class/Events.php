@@ -224,7 +224,7 @@ class Events extends \XoopsObject
             $evDate_showfrom = $this->isNew() ? \time() : $this->getVar('date_showfrom');
             $form->addElement(new \XoopsFormTextDateSelect(\_AM_WGHOLIDAY_EVENT_DATE_SHOWFROM, 'date_showfrom', '', $evDate_showfrom));
             // Form Text Date Select evDate_showto
-            $evDate_showto = $this->isNew() ? \time() : $this->getVar('date_showto');
+            $evDate_showto = $this->isNew() ? \strtotime('+1 day') : $this->getVar('date_showto');
             $form->addElement(new \XoopsFormTextDateSelect(\_AM_WGHOLIDAY_EVENT_DATE_SHOWTO, 'date_showto', '', $evDate_showto));
             // Form Radio on-/offline evStatus
             $form->addElement(new \XoopsFormHidden('status', Constants::STATUS_OFFLINE));
@@ -329,7 +329,7 @@ class Events extends \XoopsObject
             $ret['image_pos_text']      = $this->getImagePosText((int)$ret['image_pos']);
             $ret['image_display_text']  = $this->getDisplayText($imageDisplay);
             $ret['footer_short']        = $utility::truncateHtml($ret['footer_text'], $editorMaxchar);
-            $ret['footer_display_text'] = $this->getDisplayText($headerDisplay);
+            $ret['footer_display_text'] = $this->getDisplayText($footerDisplay);
             if (Constants::ONOFF_TYPE_DATE === $typeOnOff) {
                 $ret['date_showfrom_text']  = \formatTimestamp($this->getVar('date_showfrom'), 's');
                 $ret['date_showto_text']    = \formatTimestamp($this->getVar('date_showto'), 's');

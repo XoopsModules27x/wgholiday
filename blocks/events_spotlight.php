@@ -44,6 +44,9 @@ function b_wgholiday_event_spotlight_show($options)
     $evId = (int)$options[0];
     if ($evId > 0) {
         $eventObj = $eventsHandler->get($evId);
+        if (!$eventObj) {
+            return $block;
+        }
         if (
             (Constants::ONOFF_TYPE_DATE === $typeOnOff && $eventObj->getVar('date_showfrom') < time() && $eventObj->getVar('date_showto') > time())
             or

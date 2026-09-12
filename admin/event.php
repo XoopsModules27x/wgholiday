@@ -158,13 +158,21 @@ switch ($op) {
         $eventObj->setVar('image_display', Request::getInt('image_display'));
         $dateShowFrom = Request::getString('date_showfrom');
         if ('' !== $dateShowFrom) {
-            $eventsDate_showfromObj = \DateTime::createFromFormat(\_SHORTDATESTRING, $dateShowFrom);
-            $eventObj->setVar('date_showfrom', $eventsDate_showfromObj->getTimestamp());
+            $eventsDateShowFromObj = \DateTime::createFromFormat(\_SHORTDATESTRING, $dateShowFrom);
+            if ($eventsDateShowFromObj === false) {
+                // invalid date
+                \redirect_header('event.php?op=list&start=' . $start . '&limit=' . $limit, 2, \_AM_WGHOLIDAY_INVALID_DATE);
+            }
+            $eventObj->setVar('date_showfrom', $eventsDateShowFromObj->getTimestamp());
         }
         $dateShowTo = Request::getString('date_showto');
         if ('' !== $dateShowTo) {
-            $eventsDate_showtoObj = \DateTime::createFromFormat(\_SHORTDATESTRING, $dateShowTo);
-            $eventObj->setVar('date_showto', $eventsDate_showtoObj->getTimestamp());
+            $eventsDateShowToObj = \DateTime::createFromFormat(\_SHORTDATESTRING, $dateShowTo);
+            if ($eventsDateShowToObj === false) {
+                // invalid date
+                \redirect_header('event.php?op=list&start=' . $start . '&limit=' . $limit, 2, \_AM_WGHOLIDAY_INVALID_DATE);
+            }
+            $eventObj->setVar('date_showto', $eventsDateShowToObj->getTimestamp());
         }
         $eventObj->setVar('status', Request::getInt('status'));
         $eventsDate_createdObj = \DateTime::createFromFormat(\_SHORTDATESTRING, Request::getString('date_created'));
@@ -173,7 +181,7 @@ switch ($op) {
         // Insert Data
         if ($eventsHandler->insert($eventObj)) {
             if ('' !== $uploaderErrors) {
-                \redirect_header('event.php?op=edit&id=' . $evId, 5, $uploaderErrors);
+                \redirect_header('event.php?op=edit&id=' . $eventObj->getVar('id'), 5, $uploaderErrors);
             } else {
                 \redirect_header('event.php?op=list&amp;start=' . $start . '&amp;limit=' . $limit, 2, \_AM_WGHOLIDAY_FORM_OK);
             }

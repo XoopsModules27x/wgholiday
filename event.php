@@ -27,7 +27,7 @@ use XoopsModules\Wgholiday\Constants;
 use XoopsModules\Wgholiday\Common;
 
 require __DIR__ . '/header.php';
-$GLOBALS['xoopsOption']['template_main'] = 'wgholiday_events.tpl';
+$GLOBALS['xoopsOption']['template_main'] = 'wgholiday_event.tpl';
 require_once \XOOPS_ROOT_PATH . '/header.php';
 
 $op    = Request::getCmd('op', 'list');
@@ -38,7 +38,7 @@ $limit = Request::getInt('limit');
 if('change_status' === $op) {
     // Security Check
     if (!$GLOBALS['xoopsSecurity']->check()) {
-        \redirect_header('event.php', 3, \implode(',', $GLOBALS['xoopsSecurity']->getErrors()));
+        \redirect_header('index.php', 3, \implode(',', $GLOBALS['xoopsSecurity']->getErrors()));
     }
     if ($evId > 0) {
         $eventObj = $eventsHandler->get($evId);

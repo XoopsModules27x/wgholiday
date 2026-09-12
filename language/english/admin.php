@@ -38,6 +38,7 @@ require_once __DIR__ . '/main.php';
 \define('_AM_WGHOLIDAY_FORM_SURE_RENEW', "Are you sure to update: <b><span style='color : Red;'>%s </span></b>");
 // Errors
 \define('_AM_WGHOLIDAY_INVALID_PARAM', 'Invalid parameter');
+\define('_AM_WGHOLIDAY_INVALID_DATE', 'Invalid date');
 \define('_AM_WGHOLIDAY_ERROR_CHANGE_STATUS', 'Error when changing the status');
 // Buttons
 \define('_AM_WGHOLIDAY_ADD_EVENT', 'Add New Event');

@@ -18,9 +18,9 @@ The module provides a simple way to create, manage and display holidays and othe
 The current version requires:
 
 | Requirement | Version        |
-| ----------- | -------------- |
+| ----------- |----------------|
 | XOOPS       | 2.7.3 or later |
-| PHP         | 8.5 or later   |
+| PHP         | 8.4 or later   |
 
 The module is developed for the current XOOPS 2.7.x generation.
 

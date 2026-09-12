@@ -47,7 +47,7 @@ switch ($op) {
         if (!$GLOBALS['xoopsSecurity']->check()) {
             \redirect_header('clone.php', 3, \implode(',', $GLOBALS['xoopsSecurity']->getErrors()));
         }
-        $clone = Request::getString('clone', '', 'POST');
+        $clone = \mb_strtolower(Request::getString('clone', '', 'POST'));
         //check if name is valid
         if (empty($clone) || \preg_match('/[^a-zA-Z0-9\_\-]/', $clone)) {
             \redirect_header('clone.php', 3, \sprintf(\_AM_WGHOLIDAY_CLONE_INVALIDNAME, $clone));

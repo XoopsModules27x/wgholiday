@@ -41,7 +41,7 @@
     <div class="wgholiday-modal-overlay"></div>
 
     <div class="wgholiday-modal-dialog" role="dialog" aria-modal="true">
-        <button type="button" class="wgholiday-modal-close" aria-label="Schließen">
+        <button type="button" class="wgholiday-modal-close" aria-label="<{$smarty.const._MB_WGHOLIDAY_EVENT_CLOSE}>">
             &times;
         </button>
 
@@ -52,31 +52,47 @@
             <div class="wgholiday_block_body">
                 <!-- image position top -->
                 <{if $image_pos_top == $block.image_pos|default:0}>
-                    <img class="img-fluid img-responsive" src="<{$wgholiday_upload_image_url|default:false}>/<{$block.image_block|default:false}>" alt="<{$block.name|default:false}>" >
+                    <{if $block.image_modal|default:false}>
+                        <img class="img-fluid img-responsive" src="<{$wgholiday_upload_image_url|default:false}>/<{$block.image_modal|default:false}>" alt="<{$block.name|default:false}>" >
+                    <{/if}>
                     <{$block.body_text|default:false}>
                 <{/if}>
                 <!-- image position left -->
                 <{if $image_pos_left == $block.image_pos|default:0}>
                     <div class="row">
-                        <div class="col-xs-12 col-md-6">
-                            <img class="img-fluid img-responsive" src="<{$wgholiday_upload_image_url|default:false}>/<{$block.image_block|default:false}>" alt="<{$block.name|default:false}>" >
-                        </div>
-                        <div class="col-xs-12 col-md-6"><{$block.body_text|default:false}></div>
+                        <{if $block.image_modal|default:false}>
+                            <div class="col-xs-12 col-md-6">
+                                <img class="img-fluid img-responsive" src="<{$wgholiday_upload_image_url|default:false}>/<{$block.image_modal|default:false}>" alt="<{$block.name|default:false}>" >
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                        <{else}>
+                            <div class="col-xs-12 col-md-12">
+                        <{/if}>
+                        <{$block.body_text|default:false}></div>
                     </div>
                 <{/if}>
                 <!-- image position right -->
                 <{if $image_pos_right == $block.image_pos|default:0}>
                     <div class="row">
-                        <div class="col-xs-12 col-md-6"><{$block.body_text|default:false}></div>
-                        <div class="col-xs-12 col-md-6">
-                            <img class="img-fluid img-responsive" src="<{$wgholiday_upload_image_url|default:false}>/<{$block.image_block|default:false}>" alt="<{$block.name|default:false}>" >
-                        </div>
+                        <{if $block.image_modal|default:false}>
+                            <div class="col-xs-12 col-md-6">
+                        <{else}>
+                            <div class="col-xs-12 col-md-12">
+                        <{/if}>
+                        <{$block.body_text|default:false}></div>
+                        <{if $block.image_modal|default:false}>
+                            <div class="col-xs-12 col-md-6">
+                                <img class="img-fluid img-responsive" src="<{$wgholiday_upload_image_url|default:false}>/<{$block.image_modal|default:false}>" alt="<{$block.name|default:false}>" >
+                            </div>
+                        <{/if}>
                     </div>
                 <{/if}>
                 <!-- image position bottom -->
                 <{if $image_pos_bottom == $block.image_pos|default:0}>
                     <{$block.body_text|default:false}>
-                    <img class="img-fluid img-responsive" src="<{$wgholiday_upload_image_url|default:false}>/<{$block.image_block|default:false}>" alt="<{$block.name|default:false}>" >
+                    <{if $block.image_modal|default:false}>
+                        <img class="img-fluid img-responsive" src="<{$wgholiday_upload_image_url|default:false}>/<{$block.image_modal|default:false}>" alt="<{$block.name|default:false}>" >
+                    <{/if}>
                 <{/if}>
             </div>
             <{if $block.footer_modal|default:false}>
@@ -118,7 +134,7 @@
             }
         });
 
-        // Modal beim Aufruf automatisch öffnen
+        // open modal automatically when site is loaded
         openModal();
     });
 </script>

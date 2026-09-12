@@ -21,5 +21,5 @@ declare(strict_types=1);
  * @author       Goffy - Wedega - Email:webmaster@wedega.com - Website:https://wedega.com
  */
 // Events
-\define('_MB_WGHOLIDAY_EVENT_CLOSE', 'Close');
+\define('_MB_WGHOLIDAY_EVENT_CLOSE', 'Schliessen');
 // ---------------- End ----------------
