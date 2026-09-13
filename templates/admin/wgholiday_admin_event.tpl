@@ -1,16 +1,3 @@
-
-<style>
-    .width10 {
-        width: 10%;
-    }
-    .wgholiday-buttons a {
-        padding: 6px 6px !important;
-    }
-    .wgholiday-table .center {
-        text-align: center;
-    }
-</style>
-
 <!-- Header -->
 <{include file='db:wgholiday_admin_header.tpl' }>
 
@@ -33,6 +20,7 @@
                     <th class="center"><{$smarty.const._AM_WGHOLIDAY_EVENT_DATE_SHOWTO}></th>
                 <{/if}>
                 <th class="center"><{$smarty.const._AM_WGHOLIDAY_EVENT_STATUS}></th>
+                <th class="center"><{$smarty.const._AM_WGHOLIDAY_EVENT_BLOCK}></th>
                 <th class="center"><{$smarty.const._AM_WGHOLIDAY_EVENT_DATE_CREATED}></th>
                 <th class="center"><{$smarty.const._AM_WGHOLIDAY_EVENT_SUBMITTER}></th>
                 <th class="center width10"><{$smarty.const._AM_WGHOLIDAY_FORM_ACTION}></th>
@@ -77,15 +65,49 @@
                 <{else}>
                     <td class='center'>
                         <form action='event.php' method='post' style='display:inline;'>
-                            <{$token}>
+                            <{$token_wgholiday}>
                             <input type='hidden' name='op' value='change_status'>
                             <input type='hidden' name='id' value='<{$event.id}>'>
                             <input type='hidden' name='start' value='<{$start}>'>
                             <input type='hidden' name='limit' value='<{$limit}>'>
-                            <input type='image'  src='<{$wgholiday_icons_url|default:false}>/32/<{$event.status|default:false}>.png' style='border:0;'>
+                            <span class='xo-buttons'>
+                            <button class='wgholiday-form-button' aria-label="<{$event.status_text|default:false}>">
+                                <img src='<{$wgholiday_icons_url|default:false}>/32/<{$event.status|default:false}>.png'
+                                    alt="<{$event.status_text|default:false}>"
+                                    title="<{$event.status_text|default:false}>">
+                            </button>
+                            </span>
                         </form>
                     </td>
                 <{/if}>
+                <td class='center'>
+                    <{$event.block.title|default:false}>
+                    <div>
+                        <{if $event.block.bid|default:0 > 0}>
+                            <form action='event.php' method='post' style='display:inline;'>
+                                <{$token_wgholiday}>
+                                <{if $event.block.visible|default:0 == 0}>
+                                    <input type='hidden' name='op' value='block_set_online'>
+                                <{else}>
+                                    <input type='hidden' name='op' value='block_set_offline'>
+                                <{/if}>
+                                <input type='hidden' name='id' value='<{$event.id}>'>
+                                <input type='hidden' name='bid' value='<{$event.block.bid}>'>
+                                <input type='hidden' name='start' value='<{$start}>'>
+                                <input type='hidden' name='limit' value='<{$limit}>'>
+                                <span class='xo-buttons'>
+                                <{if $event.block.visible|default:0 == 0}>
+                                    <button><img src='<{$wgholiday_icons_url|default:false}>/32/<{$event.block.visible}>.png' style='border:0;width:24px;'
+                                                 alt="<{$event.block.vstatus}>" title="<{$event.block.vstatus}>"> <{$smarty.const._AM_WGHOLIDAY_EVENT_BLOCK_SETON}></button>
+                                <{else}>
+                                    <button><img src='<{$wgholiday_icons_url|default:false}>/32/<{$event.block.visible}>.png' style='border:0;width:24px;'
+                                                 alt="<{$event.block.vstatus}>" title="<{$event.block.vstatus}>"> <{$smarty.const._AM_WGHOLIDAY_EVENT_BLOCK_SETOFF}></button>
+                                <{/if}>
+                                </span>
+                            </form>
+                        <{/if}>
+                    </div>
+                </td>
                 <td class='center'><{$event.date_created_text|default:false}></td>
                 <td class='center'><{$event.submitter_text|default:false}></td>
                 <td class="center width10 xo-buttons wgholiday-buttons">
