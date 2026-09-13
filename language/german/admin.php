@@ -79,6 +79,13 @@ require_once __DIR__ . '/main.php';
 \define('_AM_WGHOLIDAY_EVENT_IMAGEPOS_RIGHT', 'Rechts neben dem Inhalt anzeigen');
 \define('_AM_WGHOLIDAY_EVENT_IMAGEPOS_BOTTOM', 'Nach dem Inhalt anzeigen');
 \define('_AM_WGHOLIDAY_EVENT_IMAGE_FOR', 'Bild für');
+// Infos betreffend Blöcke
+\define('_AM_WGHOLIDAY_EVENT_BLOCK', 'Blockinformationen');
+\define('_AM_WGHOLIDAY_EVENT_BLOCK_ONLINE', 'Block ist online');
+\define('_AM_WGHOLIDAY_EVENT_BLOCK_OFFLINE', 'Block ist offline');
+\define('_AM_WGHOLIDAY_EVENT_BLOCK_NOTFOUND', 'Kein Block gefunden');
+\define('_AM_WGHOLIDAY_EVENT_BLOCK_SETON', 'Block online stellen');
+\define('_AM_WGHOLIDAY_EVENT_BLOCK_SETOFF', 'Block offline stellen');
 // Allgemein
 \define('_AM_WGHOLIDAY_FORM_UPLOAD', 'Datei hochladen');
 \define('_AM_WGHOLIDAY_FORM_UPLOAD_NEW', 'Neue Datei hochladen: ');

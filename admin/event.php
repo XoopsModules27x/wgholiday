@@ -56,11 +56,25 @@ switch ($op) {
         $GLOBALS['xoopsTpl']->assign('wgholiday_url', \WGHOLIDAY_URL);
         $GLOBALS['xoopsTpl']->assign('wgholiday_upload_url', \WGHOLIDAY_UPLOAD_URL);
         $GLOBALS['xoopsTpl']->assign('wgholiday_icons_url', \WGHOLIDAY_ICONS_URL);
-        $GLOBALS['xoopsTpl']->assign('token', $GLOBALS['xoopsSecurity']->getTokenHTML());
+        $GLOBALS['xoopsTpl']->assign('token_wgholiday', $GLOBALS['xoopsSecurity']->getTokenHTML());
         // Table view events
         if ($eventsCount > 0) {
             foreach (\array_keys($eventsAll) as $i) {
                 $event = $eventsAll[$i]->getValuesEvents(true);
+                $block = getBlockInfo($i);
+                if ((bool)$block['result']) {
+                    if (1 === (int)$block['visible']) {
+                        $block['vstatus'] = \_AM_WGHOLIDAY_EVENT_BLOCK_ONLINE;
+                    } else {
+                        $block['vstatus'] = \_AM_WGHOLIDAY_EVENT_BLOCK_OFFLINE;
+                    }
+                    if ($block['result']) {
+                        $event['block'] = $block;
+                    }
+                } else {
+                    $event['block']['title'] = \_AM_WGHOLIDAY_EVENT_BLOCK_NOTFOUND;
+                    $event['block']['vstatus'] = '';
+                }
                 $GLOBALS['xoopsTpl']->append('events_list', $event);
                 unset($event);
             }
@@ -254,5 +268,63 @@ switch ($op) {
             \redirect_header('event.php?op=list&start=' . $start . '&limit=' . $limit, 2, \_AM_WGHOLIDAY_ERROR_CHANGE_STATUS);
         }
         break;
+    case 'block_set_online':
+    case 'block_set_offline':
+        // Security Check
+        if (!$GLOBALS['xoopsSecurity']->check()) {
+            \redirect_header('event.php', 3, \implode(',', $GLOBALS['xoopsSecurity']->getErrors()));
+        }
+        $blockId = Request::getInt('bid');
+        $newVisible =  ('block_set_online' == $op) ? 1 : 0;
+        if ($blockId > 0) {
+            $sql   = 'UPDATE ' . $GLOBALS['xoopsDB']->prefix('newblocks');
+            $sql   .= ' SET  visible=' . $newVisible;
+            $sql   .= ' WHERE bid=' . $blockId;
+            $sql   .= " AND options='spotlight|" . $evId ."'";
+
+            $result = $GLOBALS['xoopsDB']->exec($sql);
+            if ($result) {
+                \redirect_header('event.php?op=list&start=' . $start . '&limit=' . $limit, 5, \_AM_WGHOLIDAY_ERROR_CHANGE_STATUS);
+            } else {
+                \redirect_header('event.php?op=list&start=' . $start . '&limit=' . $limit, 5, \_AM_WGHOLIDAY_FORM_OK);
+            }
+        } else {
+            \redirect_header('event.php?op=list&start=' . $start . '&limit=' . $limit, 5, \_AM_WGHOLIDAY_INVALID_PARAM);
+        }
+        break;
 }
 require __DIR__ . '/footer.php';
+
+
+/**
+ * @private function getBlockInfo
+ * @param int $id
+ * @return array
+ */
+function getBlockInfo (int $id) {
+
+    $info = [];
+    $sql   = 'SELECT bid, name, title, visible, isactive';
+    $sql   .= ' FROM ' . $GLOBALS['xoopsDB']->prefix('newblocks');
+    $sql   .= ' WHERE mid=' . $GLOBALS['xoopsModule']->mid();
+    $sql   .= " AND options='spotlight|" . $id ."'";
+
+    $result = $GLOBALS['xoopsDB']->query($sql);
+    if (! $GLOBALS['xoopsDB']->isResultSet($result) || ! ($result instanceof \mysqli_result)) {
+        $info['result'] = false;
+        return $info;
+    }
+    $block = $GLOBALS['xoopsDB']->fetchRow($result);
+    if (!$block) {
+        $info['result'] = false;
+        return $info;
+    }
+    $info['bid']      = $block[0];
+    $info['name']     = $block[1];
+    $info['title']    = $block[2];
+    $info['visible']  = $block[3];
+    $info['isactive'] = $block[4];
+    $info['result']   = true;
+
+    return $info;
+}
