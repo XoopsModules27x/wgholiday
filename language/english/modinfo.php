@@ -71,8 +71,6 @@ require_once __DIR__ . '/common.php';
 \define('_MI_WGHOLIDAY_SHOW_TAB_FEEDBACK', 'Show tab "Feedback" on dashboard page');
 \define('_MI_WGHOLIDAY_SHOW_COPYRIGHT', 'Show copyright');
 \define('_MI_WGHOLIDAY_SHOW_COPYRIGHT_DESC', 'You can remove the copyright, but a backlinks to www.wedega.com is expected, anywhere on your site');
-\define('_MI_WGHOLIDAY_AUTO_BLOCK', 'Create block automatically');
-\define('_MI_WGHOLIDAY_AUTO_BLOCK_DESC', 'When saving an event, wgHoliday can create a related block automatically and set him online');
 \define('_MI_WGHOLIDAY_USE_HEADER', 'Use Header');
 \define('_MI_WGHOLIDAY_USE_HEADER_DESC', 'Select whether you want to use a header');
 \define('_MI_WGHOLIDAY_USE_FOOTER', 'Use Footer');

@@ -77,8 +77,6 @@ require_once __DIR__ . '/common.php';
 \define('_MI_WGHOLIDAY_SHOW_TAB_FEEDBACK', 'Registerkarte „Feedback“ auf der Übersichtsseite anzeigen');
 \define('_MI_WGHOLIDAY_SHOW_COPYRIGHT', 'Copyright anzeigen');
 \define('_MI_WGHOLIDAY_SHOW_COPYRIGHT_DESC', 'Sie können das Copyright entfernen, jedoch wird ersucht, an einer beliebigen Stelle einen Backlink auf www.wedega.com anzubringen');
-\define('_MI_WGHOLIDAY_AUTO_BLOCK', 'Block automatisch erstellen');
-\define('_MI_WGHOLIDAY_AUTO_BLOCK_DESC', 'Beim Speichern eines Ereignisses kann wgHoliday automatisch einen zugehörigen Block erstellen und diesen online schalten');
 \define('_MI_WGHOLIDAY_USE_HEADER', 'Header verwenden');
 \define('_MI_WGHOLIDAY_USE_HEADER_DESC', 'Wählen Sie, ob ein Header verwendet werden soll');
 \define('_MI_WGHOLIDAY_USE_FOOTER', 'Footer verwenden');

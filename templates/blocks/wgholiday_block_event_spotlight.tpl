@@ -4,14 +4,14 @@
 <div class="wgholiday_block_body">
     <!-- image position top -->
     <{if $image_pos_top == $block.image_pos|default:0}>
-        <img class="img-fluid img-responsive" src="<{$wgholiday_upload_image_url|default:false}>/<{$block.image_block|default:false}>" alt="<{$block.name|default:false}>" >
+        <img class="center img-fluid img-responsive" src="<{$wgholiday_upload_image_url|default:false}>/<{$block.image_block|default:false}>" alt="<{$block.name|default:false}>" >
         <{$block.body_text|default:false}>
     <{/if}>
     <!-- image position left -->
     <{if $image_pos_left == $block.image_pos|default:0}>
         <div class="row">
             <div class="col-xs-12 col-md-6">
-                <img class="img-fluid img-responsive" src="<{$wgholiday_upload_image_url|default:false}>/<{$block.image_block|default:false}>" alt="<{$block.name|default:false}>" >
+                <img class="center img-fluid img-responsive" src="<{$wgholiday_upload_image_url|default:false}>/<{$block.image_block|default:false}>" alt="<{$block.name|default:false}>" >
             </div>
             <div class="col-xs-12 col-md-6"><{$block.body_text|default:false}></div>
         </div>
@@ -21,14 +21,14 @@
         <div class="row">
             <div class="col-xs-12 col-md-6"><{$block.body_text|default:false}></div>
             <div class="col-xs-12 col-md-6">
-                <img class="img-fluid img-responsive" src="<{$wgholiday_upload_image_url|default:false}>/<{$block.image_block|default:false}>" alt="<{$block.name|default:false}>" >
+                <img class="center img-fluid img-responsive" src="<{$wgholiday_upload_image_url|default:false}>/<{$block.image_block|default:false}>" alt="<{$block.name|default:false}>" >
             </div>
         </div>
     <{/if}>
     <!-- image position bottom -->
     <{if $image_pos_bottom == $block.image_pos|default:0}>
         <{$block.body_text|default:false}>
-        <img class="img-fluid img-responsive" src="<{$wgholiday_upload_image_url|default:false}>/<{$block.image_block|default:false}>" alt="<{$block.name|default:false}>" >
+        <img class="center img-fluid img-responsive" src="<{$wgholiday_upload_image_url|default:false}>/<{$block.image_block|default:false}>" alt="<{$block.name|default:false}>" >
     <{/if}>
 </div>
 
@@ -53,7 +53,7 @@
                 <!-- image position top -->
                 <{if $image_pos_top == $block.image_pos|default:0}>
                     <{if $block.image_modal|default:false}>
-                        <img class="img-fluid img-responsive" src="<{$wgholiday_upload_image_url|default:false}>/<{$block.image_modal|default:false}>" alt="<{$block.name|default:false}>" >
+                        <img class="center img-fluid img-responsive" src="<{$wgholiday_upload_image_url|default:false}>/<{$block.image_modal|default:false}>" alt="<{$block.name|default:false}>" >
                     <{/if}>
                     <{$block.body_text|default:false}>
                 <{/if}>
@@ -62,7 +62,7 @@
                     <div class="row">
                         <{if $block.image_modal|default:false}>
                             <div class="col-xs-12 col-md-6">
-                                <img class="img-fluid img-responsive" src="<{$wgholiday_upload_image_url|default:false}>/<{$block.image_modal|default:false}>" alt="<{$block.name|default:false}>" >
+                                <img class="center img-fluid img-responsive" src="<{$wgholiday_upload_image_url|default:false}>/<{$block.image_modal|default:false}>" alt="<{$block.name|default:false}>" >
                             </div>
                             <div class="col-xs-12 col-md-6">
                         <{else}>
@@ -82,7 +82,7 @@
                         <{$block.body_text|default:false}></div>
                         <{if $block.image_modal|default:false}>
                             <div class="col-xs-12 col-md-6">
-                                <img class="img-fluid img-responsive" src="<{$wgholiday_upload_image_url|default:false}>/<{$block.image_modal|default:false}>" alt="<{$block.name|default:false}>" >
+                                <img class="center img-fluid img-responsive" src="<{$wgholiday_upload_image_url|default:false}>/<{$block.image_modal|default:false}>" alt="<{$block.name|default:false}>" >
                             </div>
                         <{/if}>
                     </div>
@@ -91,7 +91,7 @@
                 <{if $image_pos_bottom == $block.image_pos|default:0}>
                     <{$block.body_text|default:false}>
                     <{if $block.image_modal|default:false}>
-                        <img class="img-fluid img-responsive" src="<{$wgholiday_upload_image_url|default:false}>/<{$block.image_modal|default:false}>" alt="<{$block.name|default:false}>" >
+                        <img class="center img-fluid img-responsive" src="<{$wgholiday_upload_image_url|default:false}>/<{$block.image_modal|default:false}>" alt="<{$block.name|default:false}>" >
                     <{/if}>
                 <{/if}>
             </div>

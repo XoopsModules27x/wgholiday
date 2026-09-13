@@ -258,15 +258,6 @@ $modversion['config'][] = [
     'valuetype'   => 'int',
     'default'     => 10,
 ];
-// Block automatically
-$modversion['config'][] = [
-    'name'        => 'auto_block',
-    'title'       => '\_MI_WGHOLIDAY_AUTO_BLOCK',
-    'description' => '\_MI_WGHOLIDAY_AUTO_BLOCK_DESC',
-    'formtype'    => 'yesno',
-    'valuetype'   => 'int',
-    'default'     => 1,
-];
 // Use Header
 $modversion['config'][] = [
     'name'        => 'use_header',
