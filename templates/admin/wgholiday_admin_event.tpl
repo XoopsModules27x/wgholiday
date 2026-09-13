@@ -71,7 +71,11 @@
                             <input type='hidden' name='start' value='<{$start}>'>
                             <input type='hidden' name='limit' value='<{$limit}>'>
                             <span class='xo-buttons'>
-                            <button class='wgholiday-form-button'><img src='<{$wgholiday_icons_url|default:false}>/32/<{$event.status|default:false}>.png'></button>
+                            <button class='wgholiday-form-button' aria-label="<{$event.status_text|default:false}>">
+                                <img src='<{$wgholiday_icons_url|default:false}>/32/<{$event.status|default:false}>.png'
+                                    alt="<{$event.status_text|default:false}>"
+                                    title="<{$event.status_text|default:false}>">
+                            </button>
                             </span>
                         </form>
                     </td>

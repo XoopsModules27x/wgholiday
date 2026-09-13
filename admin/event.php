@@ -277,16 +277,11 @@ switch ($op) {
         $blockId = Request::getInt('bid');
         $newVisible =  ('block_set_online' == $op) ? 1 : 0;
         if ($blockId > 0) {
-            $sql   = 'UPDATE ' . $GLOBALS['xoopsDB']->prefix('newblocks');
-            $sql   .= ' SET  visible=' . $newVisible;
-            $sql   .= ' WHERE bid=' . $blockId;
-            $sql   .= " AND options='spotlight|" . $evId ."'";
-
-            $result = $GLOBALS['xoopsDB']->exec($sql);
+            $result = setBlockVisible ($evId, $newVisible, $blockId );
             if ($result) {
-                \redirect_header('event.php?op=list&start=' . $start . '&limit=' . $limit, 5, \_AM_WGHOLIDAY_ERROR_CHANGE_STATUS);
-            } else {
                 \redirect_header('event.php?op=list&start=' . $start . '&limit=' . $limit, 5, \_AM_WGHOLIDAY_FORM_OK);
+            } else {
+                \redirect_header('event.php?op=list&start=' . $start . '&limit=' . $limit, 5, \_AM_WGHOLIDAY_ERROR_CHANGE_STATUS);
             }
         } else {
             \redirect_header('event.php?op=list&start=' . $start . '&limit=' . $limit, 5, \_AM_WGHOLIDAY_INVALID_PARAM);
@@ -327,4 +322,43 @@ function getBlockInfo (int $id) {
     $info['result']   = true;
 
     return $info;
+}
+
+/**
+ * @private function setBlockVisible
+ * @param int $evId
+ * @param int $newVisible
+ * @param int $blockId
+ * @return bool
+ */
+function setBlockVisible (int $evId, int $newVisible, int $blockId ) {
+
+    // change value of visible
+    $sql   = 'UPDATE ' . $GLOBALS['xoopsDB']->prefix('newblocks');
+    $sql   .= ' SET  visible=' . $newVisible;
+    $sql   .= ' WHERE bid=' . $blockId;
+    $sql   .= " AND options='spotlight|" . $evId ."'";
+    $sql   .= ' AND mid=' . $GLOBALS['xoopsModule']->mid();
+
+    $result = $GLOBALS['xoopsDB']->exec($sql);
+    if (!$result) {
+        return false;
+    }
+
+    // check whether change was done
+    $sql   = 'SELECT visible';
+    $sql   .= ' FROM ' . $GLOBALS['xoopsDB']->prefix('newblocks');
+    $sql   .= ' WHERE mid=' . $GLOBALS['xoopsModule']->mid();
+    $sql   .= " AND options='spotlight|" . $evId ."'";
+    $sql   .= ' AND visible=' . $newVisible;
+    $result = $GLOBALS['xoopsDB']->query($sql);
+    if (! $GLOBALS['xoopsDB']->isResultSet($result) || ! ($result instanceof \mysqli_result)) {
+        return false;
+    }
+    $row = $GLOBALS['xoopsDB']->fetchRow($result);
+    if (!$row) {
+        return false;
+    }
+
+    return true;
 }
