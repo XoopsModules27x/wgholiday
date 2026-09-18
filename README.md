@@ -1,4 +1,10 @@
+![alt XOOPS CMS](https://xoops.org/images/logoXoops4GithubRepository.png)
+
+![alt XOOPS CMS](https://xoops.org/images/logoXoopsPhp8.png)
+
 # wgHoliday
+
+![module image](./assets/images/wgholiday.png)
 
 If e.g. your company is closed for a certain period for holidays then  it is nice if you can show a modal window with important information when someone is visiting your website.
 
