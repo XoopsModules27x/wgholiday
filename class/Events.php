@@ -245,11 +245,9 @@ class Events extends \XoopsObject
         $groupList        = $memberHandler->getGroupList();
         $grouppermHandler = \xoops_getHandler('groupperm');
         if ($this->isNew()) {
-            $groupsIdsView        = $grouppermHandler->getGroupIds('wgholiday_defaultview', 4, $GLOBALS['xoopsModule']->getVar('mid'));
-            $groupsIdsView[]      = \array_values($groupsIdsView);
+            $groupsIdsView = $grouppermHandler->getGroupIds('wgholiday_defaultview', 4, $GLOBALS['xoopsModule']->getVar('mid'));
         } else {
-            $groupsIdsView        = $grouppermHandler->getGroupIds('wgholiday_eventview', $this->getVar('id'), $GLOBALS['xoopsModule']->getVar('mid'));
-            $groupsIdsView[]      = \array_values($groupsIdsView);
+            $groupsIdsView = $grouppermHandler->getGroupIds('wgholiday_eventview', $this->getVar('id'), $GLOBALS['xoopsModule']->getVar('mid'));
         }
         // To View
         $groupsCanViewCheckbox = new \XoopsFormCheckBox('', 'groups_view', $groupsIdsView);
