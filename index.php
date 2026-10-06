@@ -60,7 +60,7 @@ if ($eventsCount > 0) {
     foreach (\array_keys($eventsAll) as $i) {
         $event = $eventsAll[$i]->getValuesEvents(true);
         if ($event) {
-            $keywords[] = $eventsAll[$i]->getVar('ev_name');
+            $keywords[] = $event['name'];
             $GLOBALS['xoopsTpl']->append('events_list', $event);
         }
     }

@@ -47,17 +47,17 @@ class PermissionsHandler extends \XoopsPersistableObjectHandler
         global $xoopsUser, $xoopsModule;
 
         $currentuid = 0;
-        if (isset($xoopsUser) && \is_object($xoopsUser)) {
-            if ($xoopsUser->isAdmin()) {
-                return true;
-            }
-            $currentuid = $xoopsUser->uid();
-        }
         $grouppermHandler = \xoops_getHandler('groupperm');
         $moduleHandler    = \xoops_getHandler('module');
         $module           = $moduleHandler->getByDirname('wgholiday');
         $mid = $module ? $module->getVar('mid') : 0;
         $memberHandler    = \xoops_getHandler('member');
+        if (isset($xoopsUser) && \is_object($xoopsUser)) {
+            if ($xoopsUser->isAdmin($mid)) {
+                return true;
+            }
+            $currentuid = $xoopsUser->uid();
+        }
         if (0 === $currentuid) {
             $my_group_ids = [\XOOPS_GROUP_ANONYMOUS];
         } else {
