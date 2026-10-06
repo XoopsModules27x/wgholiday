@@ -221,11 +221,21 @@ switch ($op) {
             $perm_modid       = $GLOBALS['xoopsModule']->getVar('mid');
             $grouppermHandler = \xoops_getHandler('groupperm');
             // remove all existing rights
-            $grouppermHandler->deleteByModule($perm_modid, 'wgholiday_eventview', $permId);
-            // set selected rights new
-            $groupsView = Request::getArray('groups_view', [], 'POST');
-            foreach ($groupsView as $onegroupId) {
-                $grouppermHandler->addRight('wgholiday_eventview', $permId, (int)$onegroupId, $perm_modid);
+            $permissionsSaved = $grouppermHandler->deleteByModule($perm_modid, 'wgholiday_eventview', $permId);
+            // Set the selected rights only if removal succeeded.
+            if ($permissionsSaved) {
+                $groupsView = Request::getArray('groups_view', [], 'POST');
+                foreach ($groupsView as $onegroupId) {
+                    if (!$grouppermHandler->addRight('wgholiday_eventview', $permId, (int)$onegroupId, $perm_modid)) {
+                        $permissionsSaved = false;
+                        break;
+                    }
+                }
+            }
+
+            if (!$permissionsSaved) {
+                \redirect_header('event.php?op=edit&id=' . (int)$permId, 5, \_AM_WGHOLIDAY_ERROR_SAVE_PERM);
+                exit;
             }
             if ('' !== $uploaderErrors) {
                 \redirect_header('event.php?op=edit&id=' . $eventObj->getVar('id'), 5, $uploaderErrors);

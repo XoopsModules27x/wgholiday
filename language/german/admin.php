@@ -40,6 +40,7 @@ require_once __DIR__ . '/main.php';
 \define('_AM_WGHOLIDAY_INVALID_PARAM', 'Ungültiger Parameter');
 \define('_AM_WGHOLIDAY_INVALID_DATE', 'Ungültiges Datum');
 \define('_AM_WGHOLIDAY_ERROR_CHANGE_STATUS', 'Fehler beim Ändern des Status');
+\define('_AM_WGHOLIDAY_ERROR_SAVE_PERM', 'Das Ereignis wurde gespeichert, aber die Berechtigungen zur Ansicht konnten nicht vollständig gesetzt werden. Überprüfe die ausgewählten Gruppen und speichere nochmals.');
 // Buttons
 \define('_AM_WGHOLIDAY_ADD_EVENT', 'Neuen Eintrag hinzufügen');
 // Listen
