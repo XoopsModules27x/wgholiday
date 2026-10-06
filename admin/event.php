@@ -223,7 +223,6 @@ switch ($op) {
             // remove all existing rights
             $grouppermHandler->deleteByModule($perm_modid, 'wgholiday_eventview', $permId);
             // set selected rights new
-            // Permission to view
             $groupsView = Request::getArray('groups_view', [], 'POST');
             foreach ($groupsView as $onegroupId) {
                 $grouppermHandler->addRight('wgholiday_eventview', $permId, (int)$onegroupId, $perm_modid);
@@ -257,11 +256,16 @@ switch ($op) {
         $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('event.php'));
         $eventObj = $eventsHandler->get($evId);
         $evName = $eventObj->getVar('name');
-        if (isset($_REQUEST['ok']) && 1 == $_REQUEST['ok']) {
+        if (1 === Request::getInt('ok')) {
             if (!$GLOBALS['xoopsSecurity']->check()) {
                 \redirect_header('event.php', 3, \implode(', ', $GLOBALS['xoopsSecurity']->getErrors()));
             }
             if ($eventsHandler->delete($eventObj)) {
+                $perm_modid       = $GLOBALS['xoopsModule']->getVar('mid');
+                $grouppermHandler = \xoops_getHandler('groupperm');
+                // remove all existing rights for this event
+                $grouppermHandler->deleteByModule($perm_modid, 'wgholiday_eventview', $evId);
+
                 \redirect_header('event.php', 3, \_AM_WGHOLIDAY_FORM_DELETE_OK);
             } else {
                 $GLOBALS['xoopsTpl']->assign('error', $eventObj->getHtmlErrors());

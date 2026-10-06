@@ -89,8 +89,8 @@
                                 <{$token_wgholiday}>
                                 <input type='hidden' name='op' value='change_status'>
                                 <input type='hidden' name='id' value='<{$event.id}>'>
-                                <input type='hidden' name='start' value='<{$start}>'>
-                                <input type='hidden' name='limit' value='<{$limit}>'>
+                                <input type='hidden' name='start' value='<{$start|default:0}>'>
+                                <input type='hidden' name='limit' value='<{$limit|default:0}>'>
                                 <label><{$event.status_text|default:false}></label>&nbsp;
                                 <input type='image'  src='<{$wgholiday_icons_url|default:false}>/32/<{$event.status|default:false}>.png' style='border:0;'>
                             </form>

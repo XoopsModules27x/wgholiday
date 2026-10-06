@@ -7,7 +7,7 @@ function toggleCheckboxGroupPerm (element) {
     el = document.getElementById('all_'+element+'1');
     toggle_checked = el.checked;
 
-    for (var i = 1; i < 10; i++) {
+    for (var i = 1; i < 50; i++) {
         el = document.getElementById(''+element+i);
         if ( el !== null ) { el.checked = toggle_checked;}
     }

@@ -40,9 +40,9 @@ class PermissionsHandler extends \XoopsPersistableObjectHandler
      * get perms for current user to view event
      *
      * @param  int $evId
-     * @return true|int
+     * @return bool
      */
-    public function permEventView(int $evId): true|int
+    public function permEventView(int $evId): bool
     {
         global $xoopsUser, $xoopsModule;
 
