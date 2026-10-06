@@ -66,6 +66,8 @@ require_once __DIR__ . '/main.php';
 \define('_AM_WGHOLIDAY_EVENT_STATUS_ONLINE', 'Online');
 \define('_AM_WGHOLIDAY_EVENT_DATE_CREATED', 'Erstellungsdatum');
 \define('_AM_WGHOLIDAY_EVENT_SUBMITTER', 'Ersteller');
+\define('_AM_WGHOLIDAY_EVENT_PERMVIEW', 'Berechtigung zum Ansehen dieses Eintrages');
+\define('_AM_WGHOLIDAY_EVENT_PERMVIEW_ALL', 'Alle');
 // Anzeige der Einträge
 \define('_AM_WGHOLIDAY_EVENT_DISPLAY', 'Anzeigen');
 \define('_AM_WGHOLIDAY_EVENT_DISPLAY_NONE', 'Nicht anzeigen');

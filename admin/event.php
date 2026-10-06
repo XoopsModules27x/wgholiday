@@ -35,6 +35,8 @@ $limit = Request::getInt('limit', $helper->getConfig('adminpager'));
 $GLOBALS['xoopsTpl']->assign('start', $start);
 $GLOBALS['xoopsTpl']->assign('limit', $limit);
 
+$GLOBALS['xoTheme']->addScript(\XOOPS_URL . '/modules/wgholiday/assets/js/admin.js');
+
 switch ($op) {
     case 'list':
     default:
@@ -75,6 +77,25 @@ switch ($op) {
                     $event['block']['title'] = \_AM_WGHOLIDAY_EVENT_BLOCK_NOTFOUND;
                     $event['block']['vstatus'] = '';
                 }
+                // get permissions
+                $perm_modid       = $GLOBALS['xoopsModule']->getVar('mid');
+                $grouppermHandler = \xoops_getHandler('groupperm');
+                $groupsView = $grouppermHandler->getGroupIds('wgholiday_eventview', $event['id'], $perm_modid);
+
+                $groupNames = [];
+                if (!empty($groupsView)) {
+                    $groupHandler = \xoops_getHandler('group');
+
+                    $criteria = new \Criteria('groupid', '(' . implode(',', array_map('intval', $groupsView)) . ')', 'IN');
+                    $groups   = $groupHandler->getObjects($criteria, true); // true = ID als Array-Key
+
+                    foreach ($groups as $groupId => $group) {
+                        $groupNames[$groupId] = $group->getVar('name');
+                    }
+                }
+                $groupNamesText = implode(', ', $groupNames);
+                $event['groups_view'] = $groupNamesText;
+                // append list
                 $GLOBALS['xoopsTpl']->append('events_list', $event);
                 unset($event);
             }
@@ -139,11 +160,12 @@ switch ($op) {
         $uploader = new \XoopsMediaUploader(\WGHOLIDAY_UPLOAD_IMAGE_PATH . '/',
                                                     $helper->getConfig('mimetypes_image'), 
                                                     $helper->getConfig('maxsize_image'), null, null);
-        if ($uploader->fetchMedia($_POST['xoops_upload_file'][0])) {
+
+        $uploadFile = Request::getArray('xoops_upload_file', [], 'POST');
+        if ($uploader->fetchMedia($uploadFile[0] ?? '')) {
             $extension = \preg_replace('/^.+\.([^.]+)$/sU', '', $filename);
             $imgName = \str_replace(' ', '', $imgNameDef) . '.' . $extension;
             $uploader->setPrefix($imgName);
-            $uploader->fetchMedia($_POST['xoops_upload_file'][0]);
             if ($uploader->upload()) {
                 $savedFilename = $uploader->getSavedFileName();
                 $maxwidth  = (int)$helper->getConfig('maxwidth_image');
@@ -194,6 +216,18 @@ switch ($op) {
         $eventObj->setVar('submitter', Request::getInt('submitter'));
         // Insert Data
         if ($eventsHandler->insert($eventObj)) {
+            $newEventId       = $eventsHandler->getInsertId();
+            $permId           = $evId > 0 ? $evId : $newEventId;
+            $perm_modid       = $GLOBALS['xoopsModule']->getVar('mid');
+            $grouppermHandler = \xoops_getHandler('groupperm');
+            // remove all existing rights
+            $grouppermHandler->deleteByModule($perm_modid, 'wgholiday_eventview', $permId);
+            // set selected rights new
+            // Permission to view
+            $groupsView = Request::getArray('groups_view', [], 'POST');
+            foreach ($groupsView as $onegroupId) {
+                $grouppermHandler->addRight('wgholiday_eventview', $permId, (int)$onegroupId, $perm_modid);
+            }
             if ('' !== $uploaderErrors) {
                 \redirect_header('event.php?op=edit&id=' . $eventObj->getVar('id'), 5, $uploaderErrors);
             } else {

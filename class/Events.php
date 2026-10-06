@@ -240,6 +240,28 @@ class Events extends \XoopsObject
             $form->addElement($evStatusSelect);
         }
 
+        // Permissions
+        $memberHandler    = \xoops_getHandler('member');
+        $groupList        = $memberHandler->getGroupList();
+        $grouppermHandler = \xoops_getHandler('groupperm');
+        if ($this->isNew()) {
+            $groupsIdsView        = $grouppermHandler->getGroupIds('wgholiday_defaultview', 4, $GLOBALS['xoopsModule']->getVar('mid'));
+            $groupsIdsView[]      = \array_values($groupsIdsView);
+        } else {
+            $groupsIdsView        = $grouppermHandler->getGroupIds('wgholiday_eventview', $this->getVar('id'), $GLOBALS['xoopsModule']->getVar('mid'));
+            $groupsIdsView[]      = \array_values($groupsIdsView);
+        }
+        // To View
+        $groupsCanViewCheckbox = new \XoopsFormCheckBox('', 'groups_view', $groupsIdsView);
+        $groupsCanViewCheckbox->addOptionArray($groupList);
+        $groupsCanViewTray = new \XoopsFormElementTray(\_AM_WGHOLIDAY_EVENT_PERMVIEW, '&nbsp;');
+        $groupsCanViewTray->addElement($groupsCanViewCheckbox);
+        $groupsCanViewAll = new \XoopsFormCheckBox('', 'all_groups_view', 0);
+        $groupsCanViewAll->setExtra('onclick="javascript:toggleCheckboxGroupPerm(' . "'groups_view'" . ')"');
+        $groupsCanViewAll->addOption(1, \_AM_WGHOLIDAY_EVENT_PERMVIEW_ALL);
+        $groupsCanViewTray->addElement($groupsCanViewAll);
+        $form->addElement($groupsCanViewTray);
+
         // Form Text Date Select evDate_created
         $evDate_created = $this->isNew() ? \time() : $this->getVar('date_created');
         $form->addElement(new \XoopsFormTextDateSelect(\_AM_WGHOLIDAY_EVENT_DATE_CREATED, 'date_created', '', $evDate_created));
@@ -265,6 +287,11 @@ class Events extends \XoopsObject
         $helper  = \XoopsModules\Wgholiday\Helper::getInstance();
         $utility = new \XoopsModules\Wgholiday\Utility();
         $ret = $this->getValues();
+        // check permissions
+        $permissionsHandler = $helper->getHandler('Permissions');
+        if (!$permissionsHandler->permEventView($ret['id'])) {
+            return [];
+        }
         $editorMaxchar = $helper->getConfig('editor_maxchar');
         $useHeader     = (bool)$helper->getConfig('use_header');
         $useFooter     = (bool)$helper->getConfig('use_footer');
