@@ -42,7 +42,9 @@
                 <div class="row wgholiday-index-row">
                     <div class="col-xs-12 col-md-4">
                         <h4><{$smarty.const._MD_WGHOLIDAY_EVENT_HEADER}></h4>
-                        <p class="small"><{$event.header_display_text|default:false}></p>
+                        <{if $use_different|default:false}>
+                            <p class="small"><{$event.header_display_text|default:false}></p>
+                        <{/if}>
                     </div>
                     <div class="col-xs-12 col-md-8"><{$event.header_short|default:false}></div>
                 </div>
@@ -55,7 +57,9 @@
             <div class="row wgholiday-index-row">
                 <div class="col-xs-12 col-md-4">
                     <h4><{$smarty.const._MD_WGHOLIDAY_EVENT_IMAGE}></h4>
-                    <p class="small"><{$event.image_display_text|default:false}></p>
+                    <{if $use_different|default:false}>
+                        <p class="small"><{$event.image_display_text|default:false}></p>
+                    <{/if}>
                     <p class="small"><{$smarty.const._MD_WGHOLIDAY_EVENT_IMAGEPOS}>: <{$event.image_pos_text|default:false}></p>
                 </div>
                 <div class="col-xs-12 col-md-8">
@@ -69,7 +73,9 @@
                 <div class="row wgholiday-index-row">
                     <div class="col-xs-12 col-md-4">
                         <h4><{$smarty.const._MD_WGHOLIDAY_EVENT_FOOTER}></h4>
-                        <p class="small"><{$event.footer_display_text|default:false}></p>
+                        <{if $use_different|default:false}>
+                            <p class="small"><{$event.footer_display_text|default:false}></p>
+                        <{/if}>
                     </div>
                     <div class="col-xs-12 col-md-8"><{$event.footer_short|default:false}></div>
                 </div>

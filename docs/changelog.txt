@@ -2,6 +2,7 @@
 1.0.1 [2025/10/06] XOOPS 2.7.3, PHP 8.4.0
 ==============================================================
  - added permission to view (Goffy)
+ - added preference for different view modal/block (goffy)
 
 ==============================================================
 1.0.0 [2025/01/06] XOOPS 2.7.3, PHP 8.4.0

@@ -40,12 +40,14 @@ $GLOBALS['xoTheme']->addScript(\XOOPS_URL . '/modules/wgholiday/assets/js/admin.
 switch ($op) {
     case 'list':
     default:
-        $useHeader = (int)$helper->getConfig('use_header');
-        $useFooter = (int)$helper->getConfig('use_footer');
-        $typeOnOff = (int)$helper->getConfig('type_onoff');
+        $useHeader    = (int)$helper->getConfig('use_header');
+        $useFooter    = (int)$helper->getConfig('use_footer');
+        $typeOnOff    = (int)$helper->getConfig('type_onoff');
+        $useDifferent = (int)$helper->getConfig('use_different');
         $GLOBALS['xoopsTpl']->assign('use_header', $useHeader);
         $GLOBALS['xoopsTpl']->assign('use_footer', $useFooter);
         $GLOBALS['xoopsTpl']->assign('type_onoff_date', Constants::ONOFF_TYPE_DATE === $typeOnOff);
+        $GLOBALS['xoopsTpl']->assign('use_different', $useDifferent);
         // Define Stylesheet
         $GLOBALS['xoTheme']->addStylesheet($style, null);
         $templateMain = 'wgholiday_admin_event.tpl';

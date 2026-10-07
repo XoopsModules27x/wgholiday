@@ -81,6 +81,8 @@ require_once __DIR__ . '/common.php';
 \define('_MI_WGHOLIDAY_USE_HEADER_DESC', 'Wählen Sie, ob ein Header verwendet werden soll');
 \define('_MI_WGHOLIDAY_USE_FOOTER', 'Footer verwenden');
 \define('_MI_WGHOLIDAY_USE_FOOTER_DESC', 'Wählen Sie, ob ein Footer verwendet werden soll');
+\define('_MI_WGHOLIDAY_USE_DIFFERENT', 'Unterschiedliche Inhalte für Modal und Block');
+\define('_MI_WGHOLIDAY_USE_DIFFERENT_DESC', 'Wählen Sie, ob es möglich sein soll, dass gewisse Inhalte nur in Modal oder im Block angezeigt werden sollen');
 \define('_MI_WGHOLIDAY_TYPE_ONOFF', 'Art der Online-Schaltung');
 \define('_MI_WGHOLIDAY_TYPE_ONOFF_DESC', 'Legen Sie fest, wie die Online-Schaltung erfolgen soll. Wenn Sie diese Option ändern, müssen Sie jedes Ereignis einmal öffnen und speichern, damit die Änderung übernommen wird');
 \define('_MI_WGHOLIDAY_TYPE_ONOFF_DATE', 'Online-Schaltung nach Datum von/bis');

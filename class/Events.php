@@ -98,12 +98,12 @@ class Events extends \XoopsObject
      */
     public function getFormEvents($action = false)
     {
-        //$isAdmin = \is_object($GLOBALS['xoopsUser']) && $GLOBALS['xoopsUser']->isAdmin($GLOBALS['xoopsModule']->mid());
-        $helper  = \XoopsModules\Wgholiday\Helper::getInstance();
-        $editor    = $helper->getConfig('editor');
-        $useHeader = (bool)$helper->getConfig('use_header');
-        $useFooter = (bool)$helper->getConfig('use_footer');
-        $typeOnOff = (int)$helper->getConfig('type_onoff');
+        $helper       = \XoopsModules\Wgholiday\Helper::getInstance();
+        $editor       = $helper->getConfig('editor');
+        $useHeader    = (bool)$helper->getConfig('use_header');
+        $useFooter    = (bool)$helper->getConfig('use_footer');
+        $typeOnOff    = (int)$helper->getConfig('type_onoff');
+        $useDifferent = (int)$helper->getConfig('use_different');
 
         if (!$action) {
             $action = $_SERVER['REQUEST_URI'];
@@ -131,19 +131,22 @@ class Events extends \XoopsObject
             $editorConfigs['editor'] = $editor;
             $headerTray->addElement(new \XoopsFormEditor('', 'header', $editorConfigs));
             // Form Radio headerDisplay
-            $headerDisplay = $this->isNew() ? Constants::DISPLAY_BOTH : $this->getVar('header_display');
-            $headerDisplaySelect = new \XoopsFormRadio(\_AM_WGHOLIDAY_EVENT_DISPLAY, 'header_display', $headerDisplay);
-            $headerDisplaySelect->addOption(Constants::DISPLAY_NONE, \_AM_WGHOLIDAY_EVENT_DISPLAY_NONE);
-            $headerDisplaySelect->addOption(Constants::DISPLAY_BOTH, \_AM_WGHOLIDAY_EVENT_DISPLAY_BOTH);
-            $headerDisplaySelect->addOption(Constants::DISPLAY_ONLYBLOCK, \_AM_WGHOLIDAY_EVENT_DISPLAY_ONLYBLOCK);
-            $headerDisplaySelect->addOption(Constants::DISPLAY_ONLYMODAL, \_AM_WGHOLIDAY_EVENT_DISPLAY_ONLYMODAL);
-            $headerTray->addElement($headerDisplaySelect);
+            if ($useDifferent) {
+                $headerDisplay = $this->isNew() ? Constants::DISPLAY_BOTH : $this->getVar('header_display');
+                $headerDisplaySelect = new \XoopsFormRadio(\_AM_WGHOLIDAY_EVENT_DISPLAY, 'header_display', $headerDisplay);
+                $headerDisplaySelect->addOption(Constants::DISPLAY_NONE, \_AM_WGHOLIDAY_EVENT_DISPLAY_NONE);
+                $headerDisplaySelect->addOption(Constants::DISPLAY_BOTH, \_AM_WGHOLIDAY_EVENT_DISPLAY_BOTH);
+                $headerDisplaySelect->addOption(Constants::DISPLAY_ONLYBLOCK, \_AM_WGHOLIDAY_EVENT_DISPLAY_ONLYBLOCK);
+                $headerDisplaySelect->addOption(Constants::DISPLAY_ONLYMODAL, \_AM_WGHOLIDAY_EVENT_DISPLAY_ONLYMODAL);
+                $headerTray->addElement($headerDisplaySelect);
+            } else {
+                $headerTray->addElement(new \XoopsFormHidden('header_display', Constants::DISPLAY_BOTH));
+            }
             $form->addElement($headerTray);
         } else {
             $form->addElement(new \XoopsFormHidden('header', ''));
             $form->addElement(new \XoopsFormHidden('header_display', Constants::DISPLAY_BOTH));
         }
-
 
         // Form Editor DhtmlTextArea evBody
         $editorConfigs['name'] = 'body';
@@ -184,16 +187,18 @@ class Events extends \XoopsObject
         $imagePosSelect->addOption(Constants::IMAGE_POS_BOTTOM, \_AM_WGHOLIDAY_EVENT_IMAGEPOS_BOTTOM);
         $imageTray->addElement($imagePosSelect);
         // Image display options
-        $imageDisplay = $this->isNew() ? Constants::DISPLAY_BOTH : $this->getVar('image_display');
-        $imageDisplaySelect = new \XoopsFormRadio(\_AM_WGHOLIDAY_EVENT_DISPLAY, 'image_display',$imageDisplay);
-        $imageDisplaySelect->addOption(Constants::DISPLAY_NONE, \_AM_WGHOLIDAY_EVENT_DISPLAY_NONE);
-        $imageDisplaySelect->addOption(Constants::DISPLAY_BOTH, \_AM_WGHOLIDAY_EVENT_DISPLAY_BOTH);
-        $imageDisplaySelect->addOption(Constants::DISPLAY_ONLYBLOCK, \_AM_WGHOLIDAY_EVENT_DISPLAY_ONLYBLOCK);
-        $imageDisplaySelect->addOption(Constants::DISPLAY_ONLYMODAL, \_AM_WGHOLIDAY_EVENT_DISPLAY_ONLYMODAL);
-        $imageTray->addElement($imageDisplaySelect);
-
+        if ($useDifferent) {
+            $imageDisplay = $this->isNew() ? Constants::DISPLAY_BOTH : $this->getVar('image_display');
+            $imageDisplaySelect = new \XoopsFormRadio(\_AM_WGHOLIDAY_EVENT_DISPLAY, 'image_display',$imageDisplay);
+            $imageDisplaySelect->addOption(Constants::DISPLAY_NONE, \_AM_WGHOLIDAY_EVENT_DISPLAY_NONE);
+            $imageDisplaySelect->addOption(Constants::DISPLAY_BOTH, \_AM_WGHOLIDAY_EVENT_DISPLAY_BOTH);
+            $imageDisplaySelect->addOption(Constants::DISPLAY_ONLYBLOCK, \_AM_WGHOLIDAY_EVENT_DISPLAY_ONLYBLOCK);
+            $imageDisplaySelect->addOption(Constants::DISPLAY_ONLYMODAL, \_AM_WGHOLIDAY_EVENT_DISPLAY_ONLYMODAL);
+            $imageTray->addElement($imageDisplaySelect);
+        } else {
+            $imageTray->addElement(new \XoopsFormHidden('image_display', Constants::DISPLAY_BOTH));
+        }
         $form->addElement($imageTray);
-
         // Form Text evFooter
         if ($useFooter) {
             $footerTray = new \XoopsFormElementTray(\_AM_WGHOLIDAY_EVENT_FOOTER, '<br>');
@@ -206,13 +211,17 @@ class Events extends \XoopsObject
             $editorConfigs['editor'] = $editor;
             $footerTray->addElement(new \XoopsFormEditor('', 'footer', $editorConfigs));
             // Form Radio footerDisplay
-            $footerDisplay = $this->isNew() ? Constants::DISPLAY_BOTH : $this->getVar('footer_display');
-            $footerDisplaySelect = new \XoopsFormRadio(\_AM_WGHOLIDAY_EVENT_DISPLAY, 'footer_display', $footerDisplay);
-            $footerDisplaySelect->addOption(Constants::DISPLAY_NONE, \_AM_WGHOLIDAY_EVENT_DISPLAY_NONE);
-            $footerDisplaySelect->addOption(Constants::DISPLAY_BOTH, \_AM_WGHOLIDAY_EVENT_DISPLAY_BOTH);
-            $footerDisplaySelect->addOption(Constants::DISPLAY_ONLYBLOCK, \_AM_WGHOLIDAY_EVENT_DISPLAY_ONLYBLOCK);
-            $footerDisplaySelect->addOption(Constants::DISPLAY_ONLYMODAL, \_AM_WGHOLIDAY_EVENT_DISPLAY_ONLYMODAL);
-            $footerTray->addElement($footerDisplaySelect);
+            if ($useDifferent) {
+                $footerDisplay = $this->isNew() ? Constants::DISPLAY_BOTH : $this->getVar('footer_display');
+                $footerDisplaySelect = new \XoopsFormRadio(\_AM_WGHOLIDAY_EVENT_DISPLAY, 'footer_display', $footerDisplay);
+                $footerDisplaySelect->addOption(Constants::DISPLAY_NONE, \_AM_WGHOLIDAY_EVENT_DISPLAY_NONE);
+                $footerDisplaySelect->addOption(Constants::DISPLAY_BOTH, \_AM_WGHOLIDAY_EVENT_DISPLAY_BOTH);
+                $footerDisplaySelect->addOption(Constants::DISPLAY_ONLYBLOCK, \_AM_WGHOLIDAY_EVENT_DISPLAY_ONLYBLOCK);
+                $footerDisplaySelect->addOption(Constants::DISPLAY_ONLYMODAL, \_AM_WGHOLIDAY_EVENT_DISPLAY_ONLYMODAL);
+                $footerTray->addElement($footerDisplaySelect);
+            } else {
+                $footerTray->addElement(new \XoopsFormHidden('footer_display', Constants::DISPLAY_BOTH));
+            }
             $form->addElement($footerTray);
         } else {
             $form->addElement(new \XoopsFormHidden('footer', ''));

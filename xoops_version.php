@@ -276,6 +276,15 @@ $modversion['config'][] = [
     'valuetype'   => 'int',
     'default'     => 1,
 ];
+// Use same/different content for modal/block
+$modversion['config'][] = [
+    'name'        => 'use_different',
+    'title'       => '\_MI_WGHOLIDAY_USE_DIFFERENT',
+    'description' => '\_MI_WGHOLIDAY_USE_DIFFERENT_DESC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 0,
+];
 // Type of setting block on-/offline
 $modversion['config'][] = [
     'name'        => 'type_onoff',
