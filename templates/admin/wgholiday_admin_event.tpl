@@ -37,7 +37,9 @@
                     <td class=''>
                         <{if $event.header_short|default:false}>
                             <div><{$event.header_short|default:false}></div>
-                            <div>(<{$event.header_display_text|default:false}>)</div>
+                            <{if $use_different|default:0}>
+                                <div>(<{$event.header_display_text|default:false}>)</div>
+                            <{/if}>
                         <{/if}>
                     </td>
                 <{/if}>
@@ -46,14 +48,18 @@
                     <div><img src="<{$wgholiday_upload_url|default:false}>/images/<{$event.image|default:false}>"
                               title="<{$smarty.const._AM_WGHOLIDAY_EVENT_IMAGE_FOR}> <{$event.name|default:false}>"
                               alt="<{$smarty.const._AM_WGHOLIDAY_EVENT_IMAGE_FOR}> <{$event.name|default:false}>" style="max-width:100px" ></div>
-                    <div>(<{$event.image_display_text|default:false}>)</div>
+                    <{if $use_different|default:0}>
+                        <div>(<{$event.image_display_text|default:false}>)</div>
+                    <{/if}>
                     <div>(<{$event.image_pos_text|default:false}>)</div>
                 </td>
                 <{if $use_footer|default:false}>
                     <td class=''>
                         <{if $event.footer_short|default:false}>
                             <div><{$event.footer_short|default:false}></div>
-                            <div>(<{$event.footer_display_text|default:false}>)</div>
+                            <{if $use_different|default:0}>
+                                <div>(<{$event.footer_display_text|default:false}>)</div>
+                            <{/if}>
                         <{/if}>
                     </td>
                 <{/if}>

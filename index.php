@@ -41,12 +41,14 @@ $keywords = [];
 // Breadcrumbs
 $xoBreadcrumbs[] = ['title' => \_MD_WGHOLIDAY_INDEX];
 
-$useHeader = (int)$helper->getConfig('use_header');
-$useFooter = (int)$helper->getConfig('use_footer');
-$typeOnOff = (int)$helper->getConfig('type_onoff');
+$useHeader    = (int)$helper->getConfig('use_header');
+$useFooter    = (int)$helper->getConfig('use_footer');
+$typeOnOff    = (int)$helper->getConfig('type_onoff');
+$useDifferent = (int)$helper->getConfig('use_different');
 $GLOBALS['xoopsTpl']->assign('use_header', $useHeader);
 $GLOBALS['xoopsTpl']->assign('use_footer', $useFooter);
 $GLOBALS['xoopsTpl']->assign('type_onoff_date', Constants::ONOFF_TYPE_DATE === $typeOnOff);
+$GLOBALS['xoopsTpl']->assign('use_different', $useDifferent);
 $GLOBALS['xoopsTpl']->assign('wgholiday_icons_url', \WGHOLIDAY_ICONS_URL);
 
 // Tables

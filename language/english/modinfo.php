@@ -75,6 +75,8 @@ require_once __DIR__ . '/common.php';
 \define('_MI_WGHOLIDAY_USE_HEADER_DESC', 'Select whether you want to use a header');
 \define('_MI_WGHOLIDAY_USE_FOOTER', 'Use Footer');
 \define('_MI_WGHOLIDAY_USE_FOOTER_DESC', 'Select whether you want to use a footer');
+\define('_MI_WGHOLIDAY_USE_DIFFERENT', 'Different content for modal and block');
+\define('_MI_WGHOLIDAY_USE_DIFFERENT_DESC', 'Select whether certain content should be displayed only in the modal or only in the block');
 \define('_MI_WGHOLIDAY_TYPE_ONOFF', 'Type of setting online');
 \define('_MI_WGHOLIDAY_TYPE_ONOFF_DESC', 'Define the type of setting online. If you change this option you have to open and save each event once in order to apply this change');
 \define('_MI_WGHOLIDAY_TYPE_ONOFF_DATE', 'Setting online by dates from/to');
