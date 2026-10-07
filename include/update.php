@@ -79,6 +79,12 @@ function xoops_module_update_wgholiday($module, $prev_version = null)
         \print_r($errors);
     }
 
+    if (file_exists($fileYaml)) {
+        unlink($fileYaml);
+    }
+    if (file_exists($fileYaml2)) {
+        unlink($fileYaml2);
+    }
 
     return $ret;
 }
