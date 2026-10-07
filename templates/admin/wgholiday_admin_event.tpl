@@ -21,6 +21,7 @@
                 <{/if}>
                 <th class="center"><{$smarty.const._AM_WGHOLIDAY_EVENT_STATUS}></th>
                 <th class="center"><{$smarty.const._AM_WGHOLIDAY_EVENT_BLOCK}></th>
+                <th class="center"><{$smarty.const._AM_WGHOLIDAY_EVENT_PERMVIEW}></th>
                 <th class="center"><{$smarty.const._AM_WGHOLIDAY_EVENT_DATE_CREATED}></th>
                 <th class="center"><{$smarty.const._AM_WGHOLIDAY_EVENT_SUBMITTER}></th>
                 <th class="center width10"><{$smarty.const._AM_WGHOLIDAY_FORM_ACTION}></th>
@@ -108,6 +109,7 @@
                         <{/if}>
                     </div>
                 </td>
+                <td class='center'><{$event.groups_view|default:false}></td>
                 <td class='center'><{$event.date_created_text|default:false}></td>
                 <td class='center'><{$event.submitter_text|default:false}></td>
                 <td class="center width10 xo-buttons wgholiday-buttons">

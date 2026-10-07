@@ -40,6 +40,7 @@ require_once __DIR__ . '/main.php';
 \define('_AM_WGHOLIDAY_INVALID_PARAM', 'Invalid parameter');
 \define('_AM_WGHOLIDAY_INVALID_DATE', 'Invalid date');
 \define('_AM_WGHOLIDAY_ERROR_CHANGE_STATUS', 'Error when changing the status');
+\define('_AM_WGHOLIDAY_ERROR_SAVE_PERM', 'The event was saved, but its viewing permissions could not be fully updated. Check the selected groups and save again.');
 // Buttons
 \define('_AM_WGHOLIDAY_ADD_EVENT', 'Add New Event');
 // Lists
@@ -66,6 +67,8 @@ require_once __DIR__ . '/main.php';
 \define('_AM_WGHOLIDAY_EVENT_STATUS_ONLINE', 'Online');
 \define('_AM_WGHOLIDAY_EVENT_DATE_CREATED', 'Date created');
 \define('_AM_WGHOLIDAY_EVENT_SUBMITTER', 'Submitter');
+\define('_AM_WGHOLIDAY_EVENT_PERMVIEW', 'Permission to see this event');
+\define('_AM_WGHOLIDAY_EVENT_PERMVIEW_ALL', 'All');
 //Displaying event items
 \define('_AM_WGHOLIDAY_EVENT_DISPLAY', 'Display');
 \define('_AM_WGHOLIDAY_EVENT_DISPLAY_NONE', 'Do not display');

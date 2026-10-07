@@ -28,6 +28,12 @@ use XoopsModules\Wgholiday\Constants;
 require __DIR__ . '/header.php';
 $GLOBALS['xoopsOption']['template_main'] = 'wgholiday_index.tpl';
 require_once \XOOPS_ROOT_PATH . '/header.php';
+
+$start = Request::getInt('start');
+$limit = Request::getInt('limit');
+$GLOBALS['xoopsTpl']->assign('start', $start);
+$GLOBALS['xoopsTpl']->assign('limit', $limit);
+
 // Define Stylesheet
 $GLOBALS['xoTheme']->addStylesheet($style, null);
 // Keywords
@@ -51,12 +57,14 @@ if ($eventsCount > 0) {
     $limit = Request::getInt('limit', $helper->getConfig('userpager'));
     $eventsAll = $eventsHandler->getAllEvents($start, $limit);
     // Get All Events
-    $events_list = [];
     foreach (\array_keys($eventsAll) as $i) {
-        $events_list[] = $eventsAll[$i]->getValuesEvents(true);
-        $keywords[] = $eventsAll[$i]->getVar('ev_name');
+        $event = $eventsAll[$i]->getValuesEvents(true);
+        if ($event) {
+            $keywords[] = $event['name'];
+            $GLOBALS['xoopsTpl']->append('events_list', $event);
+        }
     }
-    $GLOBALS['xoopsTpl']->assign('events_list', $events_list);
+
     unset($events);
     // Display Navigation
     if ($eventsCount > $limit) {

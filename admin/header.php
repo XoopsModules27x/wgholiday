@@ -32,7 +32,8 @@ $modPathIcon32   = \WGHOLIDAY_URL . '/' . $GLOBALS['xoopsModule']->getInfo('modi
 
 // Get instance of module
 $helper = \XoopsModules\Wgholiday\Helper::getInstance();
-$eventsHandler = $helper->getHandler('Events');
+$eventsHandler      = $helper->getHandler('Events');
+$permissionsHandler = $helper->getHandler('Permissions');
 $myts = MyTextSanitizer::getInstance();
 // 
 if (!isset($xoopsTpl) || !\is_object($xoopsTpl)) {
