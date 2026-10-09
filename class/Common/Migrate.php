@@ -30,7 +30,7 @@ class Migrate extends \Xmf\Database\Migrate
     /**
      * @param \XoopsModules\Wgholiday\Common\Configurator|null $configurator
      */
-    public function __construct(Common\Configurator $configurator = null)
+    public function __construct(?Common\Configurator $configurator = null)
     {
         if (null !== $configurator) {
             $this->renameTables = $configurator->renameTables;
