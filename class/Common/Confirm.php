@@ -48,13 +48,13 @@ class Confirm
 
     /**
      * @public function constructor class
-     * @param        $hiddens
-     * @param        $action
-     * @param        $object
+     * @param array  $hiddens
+     * @param string $action
+     * @param string $object
      * @param string $title
      * @param string $label
      */
-    public function __construct($hiddens, $action, $object, $title = '', $label = '')
+    public function __construct(array $hiddens, string $action, string $object, string $title = '', string $label = '')
     {
         $this->hiddens = $hiddens;
         $this->action  = $action;
@@ -69,8 +69,6 @@ class Confirm
      */
     public function getFormConfirm()
     {
-        $moduleDirName      = \basename(__DIR__);
-        $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
         //in order to be accessable from user and admin area this should be place in language common.php
         if (!\defined('_CO_WGHOLIDAY_DELETE_CONFIRM')) {
             \define('_CO_WGHOLIDAY_DELETE_CONFIRM', 'Confirm delete');

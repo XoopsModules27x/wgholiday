@@ -36,12 +36,12 @@ class Events extends \XoopsObject
     /**
      * @var int
      */
-    public $start = 0;
+    public int $start = 0;
 
     /**
      * @var int
      */
-    public $limit = 0;
+    public int $limit = 0;
 
     /**
      * Constructor
@@ -87,13 +87,12 @@ class Events extends \XoopsObject
      */
     public function getNewInsertedIdEvents()
     {
-        $newInsertedId = $GLOBALS['xoopsDB']->getInsertId();
-        return $newInsertedId;
+        return $GLOBALS['xoopsDB']->getInsertId();
     }
 
     /**
      * @public function getForm
-     * @param bool $action
+     * @param bool|string $action
      * @return \XoopsThemeForm
      */
     public function getFormEvents($action = false)
@@ -164,13 +163,13 @@ class Events extends \XoopsObject
         $evImage = $getEvImage ?: 'blank.gif';
         $imageDirectory = '/uploads/wgholiday/images';
         $imageTray = new \XoopsFormElementTray(\_AM_WGHOLIDAY_EVENT_IMAGE, '<br>');
-        $imageSelect = new \XoopsFormSelect(\sprintf(\_AM_WGHOLIDAY_EVENT_IMAGE_UPLOADS, ".{$imageDirectory}/"), 'image', $evImage, 5);
+        $imageSelect = new \XoopsFormSelect(\sprintf(\_AM_WGHOLIDAY_EVENT_IMAGE_UPLOADS, ".$imageDirectory/"), 'image', $evImage, 5);
         $imageArray = \XoopsLists::getImgListAsArray( \XOOPS_ROOT_PATH . $imageDirectory );
         foreach ($imageArray as $image1) {
             $imageSelect->addOption(($image1), $image1);
         }
         $imageSelect->setExtra("onchange='showImgSelected(\"imglabel_image\", \"image\", \"" . $imageDirectory . '", "", "' . \XOOPS_URL . "\")'");
-        $imageTray->addElement($imageSelect, false);
+        $imageTray->addElement($imageSelect);
         $imageTray->addElement(new \XoopsFormLabel('', "<br><img src='" . \XOOPS_URL . '/' . $imageDirectory . '/' . $evImage . "' id='imglabel_image' alt='' style='max-width:100px' >"));
         // Form Image evImage: Upload new image
         $maxsize = $helper->getConfig('maxsize_image');
@@ -289,7 +288,7 @@ class Events extends \XoopsObject
      * @param bool $isAdmin
      * @return array
      */
-    public function getValuesEvents($isAdmin = false)
+    public function getValuesEvents(bool $isAdmin = false)
     {
         $helper  = \XoopsModules\Wgholiday\Helper::getInstance();
         $utility = new \XoopsModules\Wgholiday\Utility();
@@ -336,8 +335,6 @@ class Events extends \XoopsObject
         $ret['image_modal'] = $textModal;
         $ret['image_block'] = $textBlock;
 
-        $imagePos = (int)$this->getVar('image_pos');
-        $textPos = '';
         // get footer text
         $ret['footer_text'] = '';
         if ($useFooter) {
@@ -394,7 +391,7 @@ class Events extends \XoopsObject
      * @param int $imagePos
      * @return string
      */
-    public function getImagePosText($imagePos)
+    public function getImagePosText(int $imagePos)
     {
         $lang = [];
         if (defined('_AM_WGHOLIDAY_EVENT_IMAGEPOS_TOP')) {
@@ -416,7 +413,7 @@ class Events extends \XoopsObject
      * @param int $valueDisplay
      * @return string
      */
-    public function getDisplayText($valueDisplay)
+    public function getDisplayText(int $valueDisplay)
     {
         $lang = [];
         if (defined('_AM_WGHOLIDAY_EVENT_DISPLAY_NONE')) {
@@ -438,7 +435,7 @@ class Events extends \XoopsObject
      * @param int $status
      * @return string
      */
-    public function getStatusText($status)
+    public function getStatusText(int $status)
     {
         $lang = [];
         if (defined('_AM_WGHOLIDAY_EVENT_STATUS_ONLINE')) {

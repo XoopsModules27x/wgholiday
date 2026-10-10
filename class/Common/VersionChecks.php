@@ -44,7 +44,7 @@ trait VersionChecks
         }
         $success = true;
 
-        if ($module->versionCompare($currentVer, $requiredVer, '<')) {
+        if ($module->versionCompare($currentVer, $requiredVer)) {
             $success = false;
             $module->setErrors(\sprintf(\constant('_CO_WGHOLIDAY_ERROR_BAD_XOOPS'), $requiredVer, $currentVer));
         }

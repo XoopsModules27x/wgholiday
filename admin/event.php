@@ -66,7 +66,7 @@ switch ($op) {
             foreach (\array_keys($eventsAll) as $i) {
                 $event = $eventsAll[$i]->getValuesEvents(true);
                 $block = getBlockInfo($i);
-                if ((bool)$block['result']) {
+                if ($block['result']) {
                     if (1 === (int)$block['visible']) {
                         $block['vstatus'] = \_AM_WGHOLIDAY_EVENT_BLOCK_ONLINE;
                     } else {

@@ -45,7 +45,7 @@ switch ($op) {
             loadSampleData();
         } else {
             xoops_cp_header();
-            xoops_confirm(['ok' => 1, 'op' => 'load'], 'index.php', \sprintf(\constant('_CO_WGHOLIDAY_ADD_SAMPLEDATA_OK')), \constant('_CO_WGHOLIDAY_CONFIRM'));
+            xoops_confirm(['ok' => 1, 'op' => 'load'], 'index.php', \_CO_WGHOLIDAY_ADD_SAMPLEDATA_OK, \_CO_WGHOLIDAY_CONFIRM);
             xoops_cp_footer();
         }
         break;
@@ -173,7 +173,7 @@ function loadTableFromArrayWithReplace($table, $data, $search, $replace)
     $prefixedTable = $db->prefix($table);
     $count         = 0;
     $sql           = 'DELETE FROM ' . $prefixedTable . ' WHERE `' . $search . '`=' . $db->quote($replace);
-    $db->queryF($sql);
+    $db->exec($sql);
     foreach ($data as $row) {
         $insertInto  = 'INSERT INTO ' . $prefixedTable . ' (';
         $valueClause = ' VALUES (';
@@ -193,7 +193,7 @@ function loadTableFromArrayWithReplace($table, $data, $search, $replace)
             }
         }
         $sql    = $insertInto . ') ' . $valueClause . ')';
-        $result = $db->queryF($sql);
+        $result = $db->exec($sql);
         if (false !== $result) {
             ++$count;
         }

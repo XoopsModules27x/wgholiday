@@ -32,7 +32,6 @@ function xoops_module_pre_uninstall_wgholiday(\XoopsModule $module)
 function xoops_module_uninstall_wgholiday(\XoopsModule $module)
 {
     $moduleDirName      = \basename(\dirname(__DIR__));
-    $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
 
     $helper = Wgholiday\Helper::getInstance();
 

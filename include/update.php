@@ -96,8 +96,7 @@ function xoops_module_update_wgholiday($module, $prev_version = null)
  */
 function wgholiday_check_db($module)
 {
-    $ret = true;
     //insert here code for database check
 
-    return $ret;
+    return true;
 }
