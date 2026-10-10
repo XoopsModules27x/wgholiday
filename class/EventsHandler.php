@@ -77,13 +77,13 @@ class EventsHandler extends \XoopsPersistableObjectHandler
 
     /**
      * Get Count Events in the database
-     * @param int    $start
-     * @param int    $limit
+     * @param int $start
+     * @param int $limit
      * @param string $sort
      * @param string $order
      * @return int
      */
-    public function getCountEvents($start = 0, $limit = 0, $sort = 'id ASC, name', $order = 'ASC')
+    public function getCountEvents(int $start = 0, int $limit = 0, string $sort = 'id ASC, name', string $order = 'ASC')
     {
         $crCountEvents = new \CriteriaCompo();
         $crCountEvents = $this->getEventsCriteria($crCountEvents, $start, $limit, $sort, $order);
@@ -92,13 +92,13 @@ class EventsHandler extends \XoopsPersistableObjectHandler
 
     /**
      * Get All Events in the database
-     * @param int    $start
-     * @param int    $limit
+     * @param int $start
+     * @param int $limit
      * @param string $sort
      * @param string $order
      * @return array
      */
-    public function getAllEvents($start = 0, $limit = 0, $sort = 'id ASC, name', $order = 'ASC')
+    public function getAllEvents(int $start = 0, int $limit = 0, string $sort = 'id ASC, name', string $order = 'ASC')
     {
         $crAllEvents = new \CriteriaCompo();
         $crAllEvents = $this->getEventsCriteria($crAllEvents, $start, $limit, $sort, $order);
@@ -108,13 +108,13 @@ class EventsHandler extends \XoopsPersistableObjectHandler
     /**
      * Get Criteria Events
      * @param        $crEvents
-     * @param int    $start
-     * @param int    $limit
+     * @param int $start
+     * @param int $limit
      * @param string $sort
      * @param string $order
      * @return int
      */
-    private function getEventsCriteria($crEvents, $start, $limit, $sort, $order)
+    private function getEventsCriteria($crEvents, int $start, int $limit, string $sort, string $order)
     {
         $crEvents->setStart($start);
         $crEvents->setLimit($limit);
