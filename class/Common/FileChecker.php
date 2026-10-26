@@ -39,10 +39,10 @@ class FileChecker
     /**
      * @param string $file_path
      * @param string|null $original_file_path
-     * @param string $redirectFile
+     * @param string|null $redirectFile
      * @return bool|string
      */
-    public static function getFileStatus(string $file_path, ?string $original_file_path = null, string $redirectFile)
+    public static function getFileStatus(string $file_path, ?string $original_file_path = null, ?string $redirectFile = null)
     {
         $pathIcon16 = \Xmf\Module\Admin::iconUrl('', '16');
 
