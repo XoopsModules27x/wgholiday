@@ -25,7 +25,7 @@ use Xmf\Request;
 use XoopsModules\Wgholiday;
 use XoopsModules\Wgholiday\Constants;
 
-require __DIR__ . '/header.php';
+require_once __DIR__ . '/header.php';
 $GLOBALS['xoopsOption']['template_main'] = 'wgholiday_index.tpl';
 require_once \XOOPS_ROOT_PATH . '/header.php';
 
@@ -82,4 +82,4 @@ if ($eventsCount > 0) {
 // Meta keywords
 wgholidayMetaKeywords($helper->getConfig('keywords') . ', ' . \implode(',', $keywords));
 unset($keywords);
-require __DIR__ . '/footer.php';
+require_once __DIR__ . '/footer.php';

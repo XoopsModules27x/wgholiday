@@ -16,6 +16,8 @@
  * @param mixed $val
  */
 
+defined('XOOPS_ROOT_PATH') || exit('Restricted access');
+
 /**
  * @param $val
  * @return float|int

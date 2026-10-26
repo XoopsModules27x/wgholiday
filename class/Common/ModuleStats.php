@@ -12,6 +12,8 @@ namespace XoopsModules\Wgholiday\Common;
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 */
 
+defined('XOOPS_ROOT_PATH') || exit('Restricted access');
+
 /**
  * Feedback plugin for xoops modules
  *
@@ -23,10 +25,10 @@ trait ModuleStats
 {
     /**
      * @param \XoopsModules\Wgholiday\Common\Configurator $configurator
-     * @param array                                           $moduleStats
+     * @param array $moduleStats
      * @return array
      */
-    public static function getModuleStats($configurator, $moduleStats)
+    public static function getModuleStats(Configurator $configurator, array $moduleStats)
     {
         if (\count($configurator->moduleStats) > 0) {
             foreach (\array_keys($configurator->moduleStats) as $i) {

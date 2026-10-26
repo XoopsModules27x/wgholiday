@@ -12,6 +12,8 @@ namespace XoopsModules\Wgholiday\Common;
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
+defined('XOOPS_ROOT_PATH') || exit('Restricted access');
+
 /**
  * @copyright   XOOPS Project (https://xoops.org)
  * @license     https://www.fsf.org/copyleft/gpl.html GNU public license
@@ -27,7 +29,7 @@ trait FilesManagement
      * @return void
      * @throws \RuntimeException
      */
-    public static function createFolder($folder): void
+    public static function createFolder(string $folder): void
     {
         try {
             if (!\file_exists($folder)) {
@@ -84,7 +86,7 @@ trait FilesManagement
      * @version     1.0.1
      * @link        https://aidanlister.com/2004/04/recursively-copying-directories-in-php/
      */
-    public static function xcopy($source, $dest)
+    public static function xcopy(string $source, string $dest)
     {
         // Check for symlinks
         if (\is_link($source)) {
@@ -131,7 +133,7 @@ trait FilesManagement
      *
      * @uses \Xmf\Module\Helper::getHelper()
      */
-    public static function deleteDirectory($src)
+    public static function deleteDirectory(string $src)
     {
         // Only continue if user is a 'global' Admin
         if (!($GLOBALS['xoopsUser'] instanceof \XoopsUser) || !$GLOBALS['xoopsUser']->isAdmin()) {
@@ -179,7 +181,7 @@ trait FilesManagement
      *
      * @return bool true on success
      */
-    public static function rrmdir($src)
+    public static function rrmdir(string $src)
     {
         // Only continue if user is a 'global' Admin
         if (!($GLOBALS['xoopsUser'] instanceof \XoopsUser) || !$GLOBALS['xoopsUser']->isAdmin()) {
@@ -220,7 +222,7 @@ trait FilesManagement
      *
      * @return bool true on success
      */
-    public static function rmove($src, $dest)
+    public static function rmove(string $src, string $dest)
     {
         // Only continue if user is a 'global' Admin
         if (!($GLOBALS['xoopsUser'] instanceof \XoopsUser) || !$GLOBALS['xoopsUser']->isAdmin()) {
@@ -264,7 +266,7 @@ trait FilesManagement
      *
      * @uses \Xmf\Module\Helper::getHelper()
      */
-    public static function rcopy($src, $dest)
+    public static function rcopy(string $src, string $dest)
     {
         // Only continue if user is a 'global' Admin
         if (!($GLOBALS['xoopsUser'] instanceof \XoopsUser) || !$GLOBALS['xoopsUser']->isAdmin()) {

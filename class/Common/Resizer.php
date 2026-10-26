@@ -12,6 +12,8 @@ namespace XoopsModules\Wgholiday\Common;
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 */
 
+defined('XOOPS_ROOT_PATH') || exit('Restricted access');
+
 /**
  * Image resizer class for xoops
  *
@@ -24,16 +26,16 @@ namespace XoopsModules\Wgholiday\Common;
  */
 class Resizer
 {
-    public $sourceFile    = '';
-    public $endFile       = '';
-    public $maxWidth      = 0;
-    public $maxHeight     = 0;
-    public $imageMimetype = '';
-    public $jpgQuality    = 90;
-    public $mergeType     = 0;
-    public $mergePos      = 0;
-    public $degrees       = 0;
-    public $error         = '';
+    public string $sourceFile    = '';
+    public string $endFile       = '';
+    public int $maxWidth      = 0;
+    public int $maxHeight     = 0;
+    public string $imageMimetype = '';
+    public int $jpgQuality    = 90;
+    public int $mergeType     = 0;
+    public int $mergePos      = 0;
+    public int $degrees       = 0;
+    public string $error         = '';
 
     /**
      * resize image if size exceed given width/height
@@ -90,7 +92,9 @@ class Resizer
             // Copy and resize old image into new image.
             \imagecopyresampled($tmpimg, $img, 0, 0, 0, 0, $new_width, $new_height, $width, $height);
 
-            \unlink($this->endFile);
+            if (\is_file($this->endFile)) {
+                \unlink($this->endFile);
+            }
             //compressing the file
             switch ($this->imageMimetype) {
                 case 'image/png':
@@ -267,7 +271,9 @@ class Resizer
         // Rotate
         $tmpimg = \imagerotate($original, $this->degrees, 0);
 
-        \unlink($this->endFile);
+        if (\is_file($this->endFile)) {
+            \unlink($this->endFile);
+        }
         //compressing the file
         switch ($this->imageMimetype) {
             case 'image/png':

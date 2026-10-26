@@ -45,8 +45,6 @@ class Events extends \XoopsObject
 
     /**
      * Constructor
-     *
-     * @param null
      */
     public function __construct()
     {
@@ -70,10 +68,8 @@ class Events extends \XoopsObject
 
     /**
      * @static function &getInstance
-     *
-     * @param null
      */
-    public static function getInstance()
+    public static function getInstance(): void
     {
         static $instance = false;
         if (!$instance) {
@@ -83,9 +79,9 @@ class Events extends \XoopsObject
 
     /**
      * The new inserted $Id
-     * @return inserted id
+     * @return int
      */
-    public function getNewInsertedIdEvents()
+    public function getNewInsertedIdEvents(): int
     {
         return $GLOBALS['xoopsDB']->getInsertId();
     }
@@ -95,7 +91,7 @@ class Events extends \XoopsObject
      * @param bool|string $action
      * @return \XoopsThemeForm
      */
-    public function getFormEvents($action = false)
+    public function getFormEvents($action = false): \XoopsThemeForm
     {
         $helper       = \XoopsModules\Wgholiday\Helper::getInstance();
         $editor       = $helper->getConfig('editor');
@@ -288,7 +284,7 @@ class Events extends \XoopsObject
      * @param bool $isAdmin
      * @return array
      */
-    public function getValuesEvents(bool $isAdmin = false)
+    public function getValuesEvents(bool $isAdmin = false): array
     {
         $helper  = \XoopsModules\Wgholiday\Helper::getInstance();
         $utility = new \XoopsModules\Wgholiday\Utility();
@@ -391,7 +387,7 @@ class Events extends \XoopsObject
      * @param int $imagePos
      * @return string
      */
-    public function getImagePosText(int $imagePos)
+    public function getImagePosText(int $imagePos): string
     {
         $lang = [];
         if (defined('_AM_WGHOLIDAY_EVENT_IMAGEPOS_TOP')) {
@@ -413,7 +409,7 @@ class Events extends \XoopsObject
      * @param int $valueDisplay
      * @return string
      */
-    public function getDisplayText(int $valueDisplay)
+    public function getDisplayText(int $valueDisplay): string
     {
         $lang = [];
         if (defined('_AM_WGHOLIDAY_EVENT_DISPLAY_NONE')) {
@@ -435,7 +431,7 @@ class Events extends \XoopsObject
      * @param int $status
      * @return string
      */
-    public function getStatusText(int $status)
+    public function getStatusText(int $status): string
     {
         $lang = [];
         if (defined('_AM_WGHOLIDAY_EVENT_STATUS_ONLINE')) {

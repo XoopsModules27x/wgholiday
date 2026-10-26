@@ -41,7 +41,7 @@ class DirectoryChecker
      *
      * @return bool|string
      */
-    public static function getDirectoryStatus($path, $mode = 0777, $redirectFile = null)
+    public static function getDirectoryStatus($path, int $mode = 0777, $redirectFile = null)
     {
         $pathIcon16 = \Xmf\Module\Admin::iconUrl('', '16');
 
@@ -99,7 +99,7 @@ class DirectoryChecker
      *
      * @return bool
      */
-    public static function createDirectory($target, $mode = 0777)
+    public static function createDirectory($target, int $mode = 0777)
     {
         $target = \str_replace('..', '', $target);
 
@@ -113,7 +113,7 @@ class DirectoryChecker
      *
      * @return bool
      */
-    public static function setDirectoryPermissions($target, $mode = 0777)
+    public static function setDirectoryPermissions($target, int $mode = 0777)
     {
         $target = \str_replace('..', '', $target);
 
@@ -135,23 +135,23 @@ $op = Request::getString('op', '', 'POST');
 switch ($op) {
     case 'createdir':
         if (\Xmf\Request::hasVar('path', 'POST')) {
-            $path = $_POST['path'];
+            $path = \Xmf\Request::getString('path');
         }
         if (\Xmf\Request::hasVar('redirect', 'POST')) {
-            $redirect = $_POST['redirect'];
+            $redirect = \Xmf\Request::getString('redirect');
         }
         $msg = DirectoryChecker::createDirectory($path) ? \constant('_CO_WGHOLIDAY_DC_DIRCREATED') : \constant('_CO_WGHOLIDAY_DC_DIRNOTCREATED');
         \redirect_header($redirect, 2, $msg . ': ' . $path);
         break;
     case 'setdirperm':
         if (\Xmf\Request::hasVar('path', 'POST')) {
-            $path = $_POST['path'];
+            $path = \Xmf\Request::getString('path');
         }
         if (\Xmf\Request::hasVar('redirect', 'POST')) {
-            $redirect = $_POST['redirect'];
+            $redirect = \Xmf\Request::getString('redirect');
         }
         if (\Xmf\Request::hasVar('mode', 'POST')) {
-            $mode = $_POST['mode'];
+            $mode = \Xmf\Request::getInt('mode');
         }
         $msg = DirectoryChecker::setDirectoryPermissions($path, $mode) ? \constant('_CO_WGHOLIDAY_DC_PERMSET') : \constant('_CO_WGHOLIDAY_DC_PERMNOTSET');
         \redirect_header($redirect, 2, $msg . ': ' . $path);

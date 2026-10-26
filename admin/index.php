@@ -24,7 +24,7 @@ declare(strict_types=1);
 use XoopsModules\Wgholiday\Common;
 
 require_once \dirname(__DIR__) . '/preloads/autoloader.php';
-require __DIR__ . '/header.php';
+require_once __DIR__ . '/header.php';
 
 // Template Index
 $templateMain = 'wgholiday_admin_index.tpl';
@@ -63,4 +63,4 @@ if ($helper->getConfig('displaySampleButton')) {
 }
 $GLOBALS['xoopsTpl']->assign('index', $adminObject->displayIndex());
 // End Test Data
-require __DIR__ . '/footer.php';
+require_once __DIR__ . '/footer.php';

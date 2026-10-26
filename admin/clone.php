@@ -22,7 +22,7 @@
 
 use Xmf\Request;
 
-require __DIR__ . '/header.php';
+require_once __DIR__ . '/header.php';
 // It recovered the value of argument op in URL$
 $op = Request::getString('op', 'list');
 
@@ -88,7 +88,7 @@ switch ($op) {
         $GLOBALS['xoopsTpl']->assign('result', $msg);
         break;
 }
-require __DIR__ . '/footer.php';
+require_once __DIR__ . '/footer.php';
 
 // recursive cloning script
 /**
@@ -137,7 +137,7 @@ function cloneFileFolder($path): void
  *
  * @return bool
  */
-function createLogo($dirname)
+function createLogo($dirname): bool
 {
     if (!\extension_loaded('gd')) {
         return false;

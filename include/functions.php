@@ -27,7 +27,9 @@ declare(strict_types=1);
  * @return void
  */
 
-function wgholidayMetaKeywords($content)
+defined('XOOPS_ROOT_PATH') || exit('Restricted access');
+
+function wgholidayMetaKeywords($content): void
 {
     global $xoopsTpl, $xoTheme;
     $myts = MyTextSanitizer::getInstance();
@@ -45,7 +47,7 @@ function wgholidayMetaKeywords($content)
  * @return void
  */
  
-function wgholidayMetaDescription($content)
+function wgholidayMetaDescription($content): void
 {
     global $xoopsTpl, $xoTheme;
     $myts = MyTextSanitizer::getInstance();

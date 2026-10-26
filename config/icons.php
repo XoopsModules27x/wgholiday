@@ -1,6 +1,11 @@
 <?php declare(strict_types=1);
+defined('XOOPS_ROOT_PATH') || exit('Restricted access');
 
-function getIcons()
+/**
+ * @copyright       (c) 2000-2026 XOOPS Project (https://xoops.org)
+ * @license             GNU GPL 2 (https://www.gnu.org/licenses/gpl-2.0.html)
+ */
+function getIcons(): object
 {
     $pathIcon16    = \Xmf\Module\Admin::iconUrl('', '16');
     $moduleDirName = \basename(\dirname(__DIR__));
