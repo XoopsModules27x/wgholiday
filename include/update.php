@@ -22,6 +22,8 @@
  * @license         GNU GPL 2.0 or later (https://www.gnu.org/licenses/gpl-2.0.html)
  */
 
+defined('XOOPS_ROOT_PATH') || exit('Restricted access');
+
 use XoopsModules\Wgholiday\Common\ {
     Configurator,
     Migrate,

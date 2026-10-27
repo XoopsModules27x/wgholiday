@@ -32,7 +32,7 @@ require_once \XOOPS_ROOT_PATH . '/modules/wgholiday/include/common.php';
  * @param  $options
  * @return array
  */
-function b_wgholiday_event_spotlight_show($options)
+function b_wgholiday_event_spotlight_show($options): array
 {
     $block         = [];
     $typeBlock     = $options[0];
@@ -72,7 +72,7 @@ function b_wgholiday_event_spotlight_show($options)
  * @param  $options
  * @return string
  */
-function b_wgholiday_event_spotlight_edit($options)
+function b_wgholiday_event_spotlight_edit($options): string
 {
     $helper = Helper::getInstance();
     $eventsHandler = $helper->getHandler('Events');

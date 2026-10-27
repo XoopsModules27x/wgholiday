@@ -21,9 +21,9 @@ declare(strict_types=1);
  * @author       Goffy - Wedega - Email:webmaster@wedega.com - Website:https://wedega.com
  */
 
-require __DIR__ . '/header.php';
+require_once __DIR__ . '/header.php';
 $templateMain = 'wgholiday_admin_about.tpl';
 $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('about.php'));
 $adminObject->setPaypal('6KJ7RW5DR3VTJ');
 $GLOBALS['xoopsTpl']->assign('about', $adminObject->renderAbout(false));
-require __DIR__ . '/footer.php';
+require_once __DIR__ . '/footer.php';

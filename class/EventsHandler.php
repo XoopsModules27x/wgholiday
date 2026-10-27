@@ -24,6 +24,8 @@ namespace XoopsModules\Wgholiday;
  * @author       Goffy - Wedega - Email:webmaster@wedega.com - Website:https://wedega.com
  */
 
+defined('XOOPS_ROOT_PATH') || exit('Restricted access');
+
 use XoopsModules\Wgholiday;
 
 
@@ -56,7 +58,7 @@ class EventsHandler extends \XoopsPersistableObjectHandler
      * retrieve a field
      *
      * @param int $id field id
-     * @param null fields
+     * @param $fields
      * @return \XoopsObject|null reference to the {@link Get} object
      */
     public function get($id = null, $fields = null)
@@ -67,7 +69,6 @@ class EventsHandler extends \XoopsPersistableObjectHandler
     /**
      * get inserted id
      *
-     * @param null
      * @return int reference to the {@link Get} object
      */
     public function getInsertId()

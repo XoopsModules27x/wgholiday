@@ -27,6 +27,7 @@ $xoopsModule   = XoopsModule::getByDirname($dirname);
 $moduleInfo    = $moduleHandler->get($xoopsModule->getVar('mid'));
 $sysPathIcon32 = $moduleInfo->getInfo('sysicons32');
 
+require_once \dirname(__DIR__) . '/preloads/autoloader.php';
 $helper = \XoopsModules\Wgholiday\Helper::getInstance();
 
 $adminmenu[] = [

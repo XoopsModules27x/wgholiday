@@ -12,6 +12,8 @@ namespace XoopsModules\Wgholiday;
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 */
 
+defined('XOOPS_ROOT_PATH') || exit('Restricted access');
+
 /**
  * wgHoliday module for xoops
  *

@@ -12,6 +12,8 @@ namespace XoopsModules\Wgholiday\Common;
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
+defined('XOOPS_ROOT_PATH') || exit('Restricted access');
+
 use XoopsModules\Wgholiday\Common;
 
 /**
@@ -25,7 +27,7 @@ use XoopsModules\Wgholiday\Common;
  */
 class Migrate extends \Xmf\Database\Migrate
 {
-    private $renameTables;
+    private mixed $renameTables;
 
     /**
      * @param \XoopsModules\Wgholiday\Common\Configurator|null $configurator
@@ -58,7 +60,7 @@ class Migrate extends \Xmf\Database\Migrate
      * @param string $tableName  table to convert
      * @param string $columnName column with IP address
      */
-    private function convertIPAddresses($tableName, $columnName): void
+    private function convertIPAddresses(string $tableName, string $columnName): void
     {
         if ($this->tableHandler->useTable($tableName)) {
             $attributes = $this->tableHandler->getColumnAttributes($tableName, $columnName);

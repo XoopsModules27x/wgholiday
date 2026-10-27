@@ -26,7 +26,7 @@ use XoopsModules\Wgholiday;
 use XoopsModules\Wgholiday\Constants;
 use XoopsModules\Wgholiday\Common;
 
-require __DIR__ . '/header.php';
+require_once __DIR__ . '/header.php';
 // Get all request values
 $op    = Request::getCmd('op', 'list');
 $evId  = Request::getInt('id');
@@ -242,7 +242,7 @@ switch ($op) {
             if ('' !== $uploaderErrors) {
                 \redirect_header('event.php?op=edit&id=' . $eventObj->getVar('id'), 5, $uploaderErrors);
             } else {
-                \redirect_header('event.php?op=list&amp;start=' . $start . '&amp;limit=' . $limit, 2, \_AM_WGHOLIDAY_FORM_OK);
+                \redirect_header('event.php?op=list&start=' . $start . '&limit=' . $limit, 2, \_AM_WGHOLIDAY_FORM_OK);
             }
         }
         // Get Form
@@ -338,7 +338,7 @@ switch ($op) {
         }
         break;
 }
-require __DIR__ . '/footer.php';
+require_once __DIR__ . '/footer.php';
 
 
 /**
@@ -346,7 +346,8 @@ require __DIR__ . '/footer.php';
  * @param int $id
  * @return array
  */
-function getBlockInfo (int $id) {
+function getBlockInfo (int $id): array
+{
 
     $info = [];
     $sql   = 'SELECT bid, name, title, visible, isactive';
@@ -381,7 +382,8 @@ function getBlockInfo (int $id) {
  * @param int $blockId
  * @return bool
  */
-function setBlockVisible (int $evId, int $newVisible, int $blockId ) {
+function setBlockVisible (int $evId, int $newVisible, int $blockId ): bool
+{
 
     // change value of visible
     $sql   = 'UPDATE ' . $GLOBALS['xoopsDB']->prefix('newblocks');

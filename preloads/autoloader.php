@@ -1,5 +1,17 @@
 <?php declare(strict_types=1);
-
+/**
+ * Preloads
+ *
+ * You may not change or alter any portion of this comment or credits
+ * of supporting developers from this source code or any supporting source code
+ * which is considered copyrighted (c) material of the original comment or credit authors.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *
+ * @copyright       (c) 2000-2026 XOOPS Project (https://xoops.org)
+ * @license             GNU GPL 2 (https://www.gnu.org/licenses/gpl-2.0.html)
+ */
 /**
  * @see https://www.php-fig.org/psr/psr-4/examples/
  */
@@ -27,7 +39,7 @@ spl_autoload_register(
         $file = $baseDir . \str_replace('\\', '/', $relativeClass) . '.php';
 
         // if the file exists, require it
-        if (\file_exists($file)) {
+        if (\file_exists($file) && is_file($file)) {
             require $file;
         }
     }

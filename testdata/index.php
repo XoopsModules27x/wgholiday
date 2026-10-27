@@ -166,7 +166,7 @@ function exportSchema(): void
  * @param        $replace
  * @return int number of rows inserted
  */
-function loadTableFromArrayWithReplace($table, $data, $search, $replace)
+function loadTableFromArrayWithReplace($table, $data, $search, $replace): int
 {
     /** @var \XoopsDatabase $db */
     $db            = \XoopsDatabaseFactory::getDatabaseConnection();

@@ -12,6 +12,8 @@ namespace XoopsModules\Wgholiday\Common;
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
+defined('XOOPS_ROOT_PATH') || exit('Restricted access');
+
 /**
  * @copyright   XOOPS Project (https://xoops.org)
  * @license     https://www.fsf.org/copyleft/gpl.html GNU public license
@@ -24,13 +26,12 @@ trait VersionChecks
      * @static
      *
      * @param \XoopsModule|null $module
-     * @param null|string $requiredVer
+     * @param string|null $requiredVer
      * @return bool true if meets requirements, false if not
      */
-    public static function checkVerXoops(?\XoopsModule $module = null, $requiredVer = null)
+    public static function checkVerXoops(?\XoopsModule $module = null, ?string $requiredVer = null)
     {
         $moduleDirName      = \basename(\dirname(__DIR__, 2));
-        $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
         if (null === $module) {
             $module = \XoopsModule::getByDirname($moduleDirName);
         }

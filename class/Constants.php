@@ -24,6 +24,8 @@ namespace XoopsModules\Wgholiday;
  * @author       Goffy - Wedega - Email:webmaster@wedega.com - Website:https://wedega.com
  */
 
+defined('XOOPS_ROOT_PATH') || exit('Restricted access');
+
 /**
  * Interface  Constants
  */
