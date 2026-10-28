@@ -51,9 +51,9 @@ switch ($op) {
         // Define Stylesheet
         $GLOBALS['xoTheme']->addStylesheet($style, null);
         $templateMain = 'wgholiday_admin_event.tpl';
-        $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('event.php'));
+        $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->renderNavigation('event.php'));
         $adminObject->addItemButton(\_AM_WGHOLIDAY_ADD_EVENT, 'event.php?op=new');
-        $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->displayButton('left'));
+        $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->renderButton('left'));
         $eventsCount = $eventsHandler->getCountEvents();
         $eventsAll = $eventsHandler->getAllEvents($start, $limit);
         $GLOBALS['xoopsTpl']->assign('events_count', $eventsCount);
@@ -113,9 +113,9 @@ switch ($op) {
         break;
     case 'new':
         $templateMain = 'wgholiday_admin_event.tpl';
-        $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('event.php'));
+        $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->renderNavigation('event.php'));
         $adminObject->addItemButton(\_AM_WGHOLIDAY_LIST_EVENTS, 'event.php', 'list');
-        $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->displayButton('left'));
+        $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->renderButton('left'));
         // Form Create
         $eventObj = $eventsHandler->create();
         $form = $eventObj->getFormEvents();
@@ -123,10 +123,10 @@ switch ($op) {
         break;
     case 'clone':
         $templateMain = 'wgholiday_admin_event.tpl';
-        $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('event.php'));
+        $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->renderNavigation('event.php'));
         $adminObject->addItemButton(\_AM_WGHOLIDAY_LIST_EVENTS, 'event.php', 'list');
         $adminObject->addItemButton(\_AM_WGHOLIDAY_ADD_EVENT, 'event.php?op=new');
-        $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->displayButton('left'));
+        $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->renderButton('left'));
         // Request source
         $evIdSource = Request::getInt('id_source');
         // Get Form
@@ -252,10 +252,10 @@ switch ($op) {
         break;
     case 'edit':
         $templateMain = 'wgholiday_admin_event.tpl';
-        $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('event.php'));
+        $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->renderNavigation('event.php'));
         $adminObject->addItemButton(\_AM_WGHOLIDAY_ADD_EVENT, 'event.php?op=new');
         $adminObject->addItemButton(\_AM_WGHOLIDAY_LIST_EVENTS, 'event.php', 'list');
-        $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->displayButton('left'));
+        $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->renderButton('left'));
         // Get Form
         $eventObj = $eventsHandler->get($evId);
         $eventObj->start = $start;
@@ -265,7 +265,7 @@ switch ($op) {
         break;
     case 'delete':
         $templateMain = 'wgholiday_admin_event.tpl';
-        $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('event.php'));
+        $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->renderNavigation('event.php'));
         $eventObj = $eventsHandler->get($evId);
         $evName = $eventObj->getVar('name');
         if (1 === Request::getInt('ok')) {

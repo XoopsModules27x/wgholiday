@@ -23,7 +23,7 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/header.php';
 $templateMain = 'wgholiday_admin_about.tpl';
-$GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('about.php'));
+$GLOBALS['xoopsTpl']->assign('navigation', $adminObject->renderNavigation('about.php'));
 $adminObject->setPaypal('6KJ7RW5DR3VTJ');
 $GLOBALS['xoopsTpl']->assign('about', $adminObject->renderAbout(false));
 require_once __DIR__ . '/footer.php';
