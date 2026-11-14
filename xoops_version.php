@@ -130,8 +130,8 @@ $modversion['blocks'][] = [
 // Meta descrition
 $modversion['config'][] = [
     'name'        => 'metadescription',
-    'title'       => '\_MI_WGHOLIDAY_MDESC',
-    'description' => '\_MI_WGHOLIDAY_MDESC_DESC',
+    'title'       => '_MI_WGHOLIDAY_MDESC',
+    'description' => '_MI_WGHOLIDAY_MDESC_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'text',
     'default'     => \_MI_WGHOLIDAY_DESC,
@@ -139,8 +139,8 @@ $modversion['config'][] = [
 // Meta Keywords
 $modversion['config'][] = [
     'name'        => 'keywords',
-    'title'       => '\_MI_WGHOLIDAY_KEYWORDS',
-    'description' => '\_MI_WGHOLIDAY_KEYWORDS_DESC',
+    'title'       => '_MI_WGHOLIDAY_KEYWORDS',
+    'description' => '_MI_WGHOLIDAY_KEYWORDS_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'text',
     'default'     => 'wgholiday, events',
@@ -150,8 +150,8 @@ $modversion['config'][] = [
 $editorHandler = XoopsEditorHandler::getInstance();
 $modversion['config'][] = [
     'name'        => 'editor',
-    'title'       => '\_MI_WGHOLIDAY_EDITOR',
-    'description' => '\_MI_WGHOLIDAY_EDITOR_DESC',
+    'title'       => '_MI_WGHOLIDAY_EDITOR',
+    'description' => '_MI_WGHOLIDAY_EDITOR_DESC',
     'formtype'    => 'select',
     'valuetype'   => 'text',
     'default'     => 'dhtml',
@@ -160,8 +160,8 @@ $modversion['config'][] = [
 // Editor : max characters admin area
 $modversion['config'][] = [
     'name'        => 'editor_maxchar',
-    'title'       => '\_MI_WGHOLIDAY_EDITOR_MAXCHAR',
-    'description' => '\_MI_WGHOLIDAY_EDITOR_MAXCHAR_DESC',
+    'title'       => '_MI_WGHOLIDAY_EDITOR_MAXCHAR',
+    'description' => '_MI_WGHOLIDAY_EDITOR_MAXCHAR_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'int',
     'default'     => 200,
@@ -171,6 +171,7 @@ require_once __DIR__ . '/include/xoops_version.inc.php';
 $iniPostMaxSize       = wgholidayReturnBytes(\ini_get('post_max_size'));
 $iniUploadMaxFileSize = wgholidayReturnBytes(\ini_get('upload_max_filesize'));
 $maxSize              = min($iniPostMaxSize, $iniUploadMaxFileSize);
+$increment = 1;
 if ($maxSize > 10000 * 1048576) {
     $increment = 500;
 }
@@ -192,12 +193,6 @@ if ($maxSize <= 500 * 1048576) {
 if ($maxSize <= 100 * 1048576) {
     $increment = 2;
 }
-if ($maxSize <= 50 * 1048576) {
-    $increment = 1;
-}
-if ($maxSize <= 25 * 1048576) {
-    $increment = 0.5;
-}
 $optionMaxsize = [];
 $i = $increment;
 while ($i * 1048576 <= $maxSize) {
@@ -207,8 +202,8 @@ while ($i * 1048576 <= $maxSize) {
 // Uploads : maxsize of image
 $modversion['config'][] = [
     'name'        => 'maxsize_image',
-    'title'       => '\_MI_WGHOLIDAY_MAXSIZE_IMAGE',
-    'description' => '\_MI_WGHOLIDAY_MAXSIZE_IMAGE_DESC',
+    'title'       => '_MI_WGHOLIDAY_MAXSIZE_IMAGE',
+    'description' => '_MI_WGHOLIDAY_MAXSIZE_IMAGE_DESC',
     'formtype'    => 'select',
     'valuetype'   => 'int',
     'default'     => 3145728,
@@ -217,8 +212,8 @@ $modversion['config'][] = [
 // Uploads : mimetypes of image
 $modversion['config'][] = [
     'name'        => 'mimetypes_image',
-    'title'       => '\_MI_WGHOLIDAY_MIMETYPES_IMAGE',
-    'description' => '\_MI_WGHOLIDAY_MIMETYPES_IMAGE_DESC',
+    'title'       => '_MI_WGHOLIDAY_MIMETYPES_IMAGE',
+    'description' => '_MI_WGHOLIDAY_MIMETYPES_IMAGE_DESC',
     'formtype'    => 'select_multi',
     'valuetype'   => 'array',
     'default'     => ['image/gif', 'image/jpeg', 'image/png'],
@@ -226,16 +221,16 @@ $modversion['config'][] = [
 ];
 $modversion['config'][] = [
     'name'        => 'maxwidth_image',
-    'title'       => '\_MI_WGHOLIDAY_MAXWIDTH_IMAGE',
-    'description' => '\_MI_WGHOLIDAY_MAXWIDTH_IMAGE_DESC',
+    'title'       => '_MI_WGHOLIDAY_MAXWIDTH_IMAGE',
+    'description' => '_MI_WGHOLIDAY_MAXWIDTH_IMAGE_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'int',
     'default'     => 800,
 ];
 $modversion['config'][] = [
     'name'        => 'maxheight_image',
-    'title'       => '\_MI_WGHOLIDAY_MAXHEIGHT_IMAGE',
-    'description' => '\_MI_WGHOLIDAY_MAXHEIGHT_IMAGE_DESC',
+    'title'       => '_MI_WGHOLIDAY_MAXHEIGHT_IMAGE',
+    'description' => '_MI_WGHOLIDAY_MAXHEIGHT_IMAGE_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'int',
     'default'     => 800,
@@ -243,8 +238,8 @@ $modversion['config'][] = [
 // Admin pager
 $modversion['config'][] = [
     'name'        => 'adminpager',
-    'title'       => '\_MI_WGHOLIDAY_ADMIN_PAGER',
-    'description' => '\_MI_WGHOLIDAY_ADMIN_PAGER_DESC',
+    'title'       => '_MI_WGHOLIDAY_ADMIN_PAGER',
+    'description' => '_MI_WGHOLIDAY_ADMIN_PAGER_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'int',
     'default'     => 10,
@@ -252,8 +247,8 @@ $modversion['config'][] = [
 // User pager
 $modversion['config'][] = [
     'name'        => 'userpager',
-    'title'       => '\_MI_WGHOLIDAY_USER_PAGER',
-    'description' => '\_MI_WGHOLIDAY_USER_PAGER_DESC',
+    'title'       => '_MI_WGHOLIDAY_USER_PAGER',
+    'description' => '_MI_WGHOLIDAY_USER_PAGER_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'int',
     'default'     => 10,
@@ -261,8 +256,8 @@ $modversion['config'][] = [
 // Use Header
 $modversion['config'][] = [
     'name'        => 'use_header',
-    'title'       => '\_MI_WGHOLIDAY_USE_HEADER',
-    'description' => '\_MI_WGHOLIDAY_USE_HEADER_DESC',
+    'title'       => '_MI_WGHOLIDAY_USE_HEADER',
+    'description' => '_MI_WGHOLIDAY_USE_HEADER_DESC',
     'formtype'    => 'yesno',
     'valuetype'   => 'int',
     'default'     => 1,
@@ -270,8 +265,8 @@ $modversion['config'][] = [
 // Use Footer
 $modversion['config'][] = [
     'name'        => 'use_footer',
-    'title'       => '\_MI_WGHOLIDAY_USE_FOOTER',
-    'description' => '\_MI_WGHOLIDAY_USE_FOOTER_DESC',
+    'title'       => '_MI_WGHOLIDAY_USE_FOOTER',
+    'description' => '_MI_WGHOLIDAY_USE_FOOTER_DESC',
     'formtype'    => 'yesno',
     'valuetype'   => 'int',
     'default'     => 1,
@@ -279,8 +274,8 @@ $modversion['config'][] = [
 // Use same/different content for modal/block
 $modversion['config'][] = [
     'name'        => 'use_different',
-    'title'       => '\_MI_WGHOLIDAY_USE_DIFFERENT',
-    'description' => '\_MI_WGHOLIDAY_USE_DIFFERENT_DESC',
+    'title'       => '_MI_WGHOLIDAY_USE_DIFFERENT',
+    'description' => '_MI_WGHOLIDAY_USE_DIFFERENT_DESC',
     'formtype'    => 'yesno',
     'valuetype'   => 'int',
     'default'     => 0,
@@ -288,8 +283,8 @@ $modversion['config'][] = [
 // Type of setting block on-/offline
 $modversion['config'][] = [
     'name'        => 'type_onoff',
-    'title'       => '\_MI_WGHOLIDAY_TYPE_ONOFF',
-    'description' => '\_MI_WGHOLIDAY_TYPE_ONOFF_DESC',
+    'title'       => '_MI_WGHOLIDAY_TYPE_ONOFF',
+    'description' => '_MI_WGHOLIDAY_TYPE_ONOFF_DESC',
     'formtype'    => 'select',
     'valuetype'   => 'int',
     'default'     => Constants::ONOFF_TYPE_DATE,
@@ -298,8 +293,8 @@ $modversion['config'][] = [
 // Show Breadcrumbs
 $modversion['config'][] = [
     'name'        => 'show_breadcrumbs',
-    'title'       => '\_MI_WGHOLIDAY_SHOW_BREADCRUMBS',
-    'description' => '\_MI_WGHOLIDAY_SHOW_BREADCRUMBS_DESC',
+    'title'       => '_MI_WGHOLIDAY_SHOW_BREADCRUMBS',
+    'description' => '_MI_WGHOLIDAY_SHOW_BREADCRUMBS_DESC',
     'formtype'    => 'yesno',
     'valuetype'   => 'int',
     'default'     => 1,
